@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://www.tengtai.tk/2017/01/23/2017-01-23-快速了解JavaScript中的函数/index.html">
 <meta property="og:site_name" content="光之晨曦">
 <meta property="og:description" content="快速了解JavaScript中的函数">
-<meta property="og:updated_time" content="2017-02-28T03:42:05.000Z">
+<meta property="og:updated_time" content="2017-02-28T14:42:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速了解JavaScript中的函数">
 <meta name="twitter:description" content="快速了解JavaScript中的函数">
@@ -93,108 +93,29 @@
 </header>
 	<div class="article-content">
 		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速了解JavaScript中的函数"><span class="toc-number">1.</span> <span class="toc-text">快速了解JavaScript中的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-普通函数"><span class="toc-number">1.1.</span> <span class="toc-text">1.普通函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-普通函数示例"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 普通函数示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-同名函数覆盖"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 同名函数覆盖,</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-arguments对象"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 arguments对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-“undefined”"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 “undefined”</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-匿名函数"><span class="toc-number">1.2.</span> <span class="toc-text">2.匿名函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-变量匿名函数"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 变量匿名函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-无名称匿名函数"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 无名称匿名函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-闭包函数"><span class="toc-number">1.3.</span> <span class="toc-text">3.闭包函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-全局引用与局部引用"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 全局引用与局部引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-有参数的闭包函数"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 有参数的闭包函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-函数内变量共享"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 函数内变量共享</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考"><span class="toc-number">1.3.4.</span> <span class="toc-text">参考</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
 		<p>最近在学习前端知识，顺手把一些东西记录下来，加深记忆，忘记的时候翻阅一下，温故而知新。</p>
-<h2 id="快速了解JavaScript中的函数"><a href="#快速了解JavaScript中的函数" class="headerlink" title="快速了解JavaScript中的函数"></a>快速了解JavaScript中的函数</h2><h3 id="1-普通函数"><a href="#1-普通函数" class="headerlink" title="1.普通函数"></a>1.普通函数</h3><h4 id="1-1-普通函数示例"><a href="#1-1-普通函数示例" class="headerlink" title="1.1 普通函数示例"></a>1.1 普通函数示例</h4><pre><code>function sayHello() {
-    console.log(&quot;hello&quot;);
-}
-console.log(&quot;------------------------------------------------&quot;);
-</code></pre><h4 id="1-2-同名函数覆盖"><a href="#1-2-同名函数覆盖" class="headerlink" title="1.2 同名函数覆盖,"></a>1.2 同名函数覆盖,</h4><p>JS中没有函数重载，定义相同的函数名，不同参数的函数。 调用时，后面的函数会覆盖前面的函数。</p>
-<pre><code>function add(value1) {
-    return value1 + 1;
-}
-
-function add(value1, value2) {
-    return value1 + 2;
-}
-console.log(add(2)); //4
-console.log(&quot;------------------------------------------------&quot;);
-</code></pre><h4 id="1-3-arguments对象"><a href="#1-3-arguments对象" class="headerlink" title="1.3 arguments对象"></a>1.3 arguments对象</h4><p> 传入参数大于定义参数时，arguments对象存放了函数调用时的所有参数</p>
-<pre><code>function showNames(name) {
-    console.log(name);
-    for (var i = 0; i &lt; arguments.length; i++) {
-        console.log(arguments[i]);
-    } 
-}
-showNames(&quot;🍎&quot;, &quot;🍐&quot;, &quot;🍑&quot;); //🍎🍎🍐🍑
-console.log(&quot;------------------------------------------------&quot;);
-</code></pre><h4 id="1-4-“undefined”"><a href="#1-4-“undefined”" class="headerlink" title="1.4 “undefined”"></a>1.4 “undefined”</h4><p>若函数没有指明返回值，默认返回的是“undefined”</p>
-<pre><code>function showUndefined() {
-
-}
-console.log(showUndefined());
-console.log(&quot;------------------------------------------------&quot;);
-</code></pre><h3 id="2-匿名函数"><a href="#2-匿名函数" class="headerlink" title="2.匿名函数"></a>2.匿名函数</h3><h4 id="2-1-变量匿名函数"><a href="#2-1-变量匿名函数" class="headerlink" title="2.1 变量匿名函数"></a>2.1 变量匿名函数</h4><p> 可以把函数赋值给变量，事件。</p>
-<pre><code>var add = function (num1, num2) {
-    console.log(num1 + num2);
-}
-
-add(1, 1);
-console.log(&quot;------------------------------------------------&quot;);
-</code></pre><h4 id="2-2-无名称匿名函数"><a href="#2-2-无名称匿名函数" class="headerlink" title="2.2 无名称匿名函数"></a>2.2 无名称匿名函数</h4><p>  即在函数声明时，在后面紧跟参数。JS解析语法时立即执行该函数。</p>
-<pre><code>(function(arg) {
-    console.log(&quot;无名称匿名函数&quot; + arg);
-})(33);
-console.log(&quot;------------------------------------------------&quot;);
-</code></pre><p> 适用场景，只需执行一次的。如浏览器加载完，只需要执行一次且后面不执行的功能。</p>
+<h2 id="快速了解JavaScript中的函数"><a href="#快速了解JavaScript中的函数" class="headerlink" title="快速了解JavaScript中的函数"></a>快速了解JavaScript中的函数</h2><h3 id="1-普通函数"><a href="#1-普通函数" class="headerlink" title="1.普通函数"></a>1.普通函数</h3><h4 id="1-1-普通函数示例"><a href="#1-1-普通函数示例" class="headerlink" title="1.1 普通函数示例"></a>1.1 普通函数示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function sayHello() &#123;</div><div class="line">	console.log(&quot;hello&quot;);</div><div class="line">&#125;</div><div class="line">console.log(&quot;------------------------------------------------&quot;);</div></pre></td></tr></table></figure>
+<h4 id="1-2-同名函数覆盖"><a href="#1-2-同名函数覆盖" class="headerlink" title="1.2 同名函数覆盖,"></a>1.2 同名函数覆盖,</h4><p>JS中没有函数重载，定义相同的函数名，不同参数的函数。 调用时，后面的函数会覆盖前面的函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function add(value1) &#123;</div><div class="line">	return value1 + 1;</div><div class="line">&#125;</div><div class="line">	</div><div class="line">function add(value1, value2) &#123;</div><div class="line">	return value1 + 2;</div><div class="line">&#125;</div><div class="line">console.log(add(2)); //4</div><div class="line">console.log(&quot;------------------------------------------------&quot;);</div></pre></td></tr></table></figure>
+<h4 id="1-3-arguments对象"><a href="#1-3-arguments对象" class="headerlink" title="1.3 arguments对象"></a>1.3 arguments对象</h4><p> 传入参数大于定义参数时，arguments对象存放了函数调用时的所有参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function showNames(name) &#123;</div><div class="line">	console.log(name);</div><div class="line">	for (var i = 0; i &lt; arguments.length; i++) &#123;</div><div class="line">		console.log(arguments[i]);</div><div class="line">	&#125; </div><div class="line">&#125;</div><div class="line">showNames(&quot;🍎&quot;, &quot;🍐&quot;, &quot;🍑&quot;); //🍎🍎🍐🍑</div><div class="line">console.log(&quot;------------------------------------------------&quot;);</div></pre></td></tr></table></figure></p>
+<h4 id="1-4-“undefined”"><a href="#1-4-“undefined”" class="headerlink" title="1.4 “undefined”"></a>1.4 “undefined”</h4><p>若函数没有指明返回值，默认返回的是“undefined”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function showUndefined() &#123;</div><div class="line">	</div><div class="line">&#125;</div><div class="line">console.log(showUndefined());</div><div class="line">console.log(&quot;------------------------------------------------&quot;);</div></pre></td></tr></table></figure></p>
+<h3 id="2-匿名函数"><a href="#2-匿名函数" class="headerlink" title="2.匿名函数"></a>2.匿名函数</h3><h4 id="2-1-变量匿名函数"><a href="#2-1-变量匿名函数" class="headerlink" title="2.1 变量匿名函数"></a>2.1 变量匿名函数</h4><p>可以把函数赋值给变量，事件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var add = function (num1, num2) &#123;</div><div class="line">	console.log(num1 + num2);</div><div class="line">&#125;</div><div class="line">	</div><div class="line">add(1, 1);</div><div class="line">console.log(&quot;------------------------------------------------&quot;);</div></pre></td></tr></table></figure></p>
+<h4 id="2-2-无名称匿名函数"><a href="#2-2-无名称匿名函数" class="headerlink" title="2.2 无名称匿名函数"></a>2.2 无名称匿名函数</h4><p>即在函数声明时，在后面紧跟参数。JS解析语法时立即执行该函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(function(arg) &#123;</div><div class="line">	console.log(&quot;无名称匿名函数&quot; + arg);</div><div class="line">&#125;)(33);</div><div class="line">console.log(&quot;------------------------------------------------&quot;);</div></pre></td></tr></table></figure></p>
+<p>适用场景，只需执行一次的。如浏览器加载完，只需要执行一次且后面不执行的功能。</p>
 <h3 id="3-闭包函数"><a href="#3-闭包函数" class="headerlink" title="3.闭包函数"></a>3.闭包函数</h3><ul>
 <li>函数A内部声明了个函数B，函数B引用了函数B之外的变量，并且函数A的返回值是函数B的引用，那么函数B就是闭包函数。</li>
 </ul>
-<h4 id="3-1-全局引用与局部引用"><a href="#3-1-全局引用与局部引用" class="headerlink" title="3.1 全局引用与局部引用"></a>3.1 全局引用与局部引用</h4><pre><code>function funA() {
-    var i = 0;
-    function funB() { // 闭包函数funB
-        i++;
-        console.log(i);
-    }
-    return funB();
-}
-// allShowA是全局变量，引用了函数funA,重复运行allShowA(),输出1,2,3,4等累加值。
-var allShowA = funA(); 
-
-// 执行函数partShowA(),因为内部只声明了局部变量showA来引用函数funA,函数执行完由于作用域，showA变量就被释放了。
-function partShowA() {
-    var showA = funA();
-    showA();
-}
-// 闭包的关键就在于作用域：全局变量占有的资源只有当页面变换或浏览器关闭后才会释放。var allShowA = funA()时，相当于allShowA引用了funB()，从而使funB()里的资源不被GC回收，因此funA()里的资源也不会。
-console.log(&quot;------------------------------------------------&quot;);
-</code></pre><h4 id="3-2-有参数的闭包函数"><a href="#3-2-有参数的闭包函数" class="headerlink" title="3.2 有参数的闭包函数"></a>3.2 有参数的闭包函数</h4><pre><code> function funA(arg1, arg2) {
-     var i = 0;
-     function funB(num) {
-         i = i + num;
-         console.log(i);
-     }
-     return funB;
- }
-
- var allShowA = funA(3, 4);
- allShowA(1); // 1
- allShowA(2); // 3
- allShowA(3); // 6
-
- function partShowA(arg) {
-    var showA = funA(3, 4);
-    showA(arg);
-}
-partShowA(1); // 1
-partShowA(2); // 2
-partShowA(3); // 3
-console.log(&quot;------------------------------------------------&quot;);
-</code></pre><h4 id="3-3-函数内变量共享"><a href="#3-3-函数内变量共享" class="headerlink" title="3.3 函数内变量共享"></a>3.3 函数内变量共享</h4><pre><code>function funA1() {
-    var i = 0;
-    function funB() {
-        i++;
-        console.log(i);
-    }
-    allShowC = function(){
-        i++;
-        console.log(i);
-    }
-    return funB();
-}
-var allShow1 = funA1();
-var allShow2 = funA1();
-console.log(&quot;------------------------------------------------&quot;);
-</code></pre><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://www.cnblogs.com/polk6/p/3284839.html" target="_blank" rel="external">JavaScript function函数种类</a></p>
+<h4 id="3-1-全局引用与局部引用"><a href="#3-1-全局引用与局部引用" class="headerlink" title="3.1 全局引用与局部引用"></a>3.1 全局引用与局部引用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function funA() &#123;</div><div class="line">	var i = 0;</div><div class="line">	function funB() &#123; // 闭包函数funB</div><div class="line">		i++;</div><div class="line">		console.log(i);</div><div class="line">	&#125;</div><div class="line">	return funB();</div><div class="line">&#125;</div><div class="line">// allShowA是全局变量，引用了函数funA,重复运行allShowA(),输出1,2,3,4等累加值。</div><div class="line">var allShowA = funA(); </div><div class="line"></div><div class="line">// 执行函数partShowA(),因为内部只声明了局部变量showA来引用函数funA,函数执行完由于作用域，showA变量就被释放了。</div><div class="line">function partShowA() &#123;</div><div class="line">	var showA = funA();</div><div class="line">	showA();</div><div class="line">&#125;</div><div class="line">// 闭包的关键就在于作用域：全局变量占有的资源只有当页面变换或浏览器关闭后才会释放。var allShowA = funA()时，相当于allShowA引用了funB()，从而使funB()里的资源不被GC回收，因此funA()里的资源也不会。</div><div class="line">console.log(&quot;------------------------------------------------&quot;);</div></pre></td></tr></table></figure>
+<h4 id="3-2-有参数的闭包函数"><a href="#3-2-有参数的闭包函数" class="headerlink" title="3.2 有参数的闭包函数"></a>3.2 有参数的闭包函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"> function funA(arg1, arg2) &#123;</div><div class="line"> 	var i = 0;</div><div class="line"> 	function funB(num) &#123;</div><div class="line"> 		i = i + num;</div><div class="line"> 		console.log(i);</div><div class="line"> 	&#125;</div><div class="line"> 	return funB;</div><div class="line"> &#125;</div><div class="line">	</div><div class="line"> var allShowA = funA(3, 4);</div><div class="line"> allShowA(1); // 1</div><div class="line"> allShowA(2); // 3</div><div class="line"> allShowA(3); // 6</div><div class="line">	</div><div class="line"> function partShowA(arg) &#123;</div><div class="line">	var showA = funA(3, 4);</div><div class="line">	showA(arg);</div><div class="line">&#125;</div><div class="line">partShowA(1); // 1</div><div class="line">partShowA(2); // 2</div><div class="line">partShowA(3); // 3</div><div class="line">console.log(&quot;------------------------------------------------&quot;);</div></pre></td></tr></table></figure>
+<h4 id="3-3-函数内变量共享"><a href="#3-3-函数内变量共享" class="headerlink" title="3.3 函数内变量共享"></a>3.3 函数内变量共享</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function funA1() &#123;</div><div class="line">	var i = 0;</div><div class="line">	function funB() &#123;</div><div class="line">		i++;</div><div class="line">		console.log(i);</div><div class="line">	&#125;</div><div class="line">	allShowC = function()&#123;</div><div class="line">		i++;</div><div class="line">		console.log(i);</div><div class="line">	&#125;</div><div class="line">	return funB();</div><div class="line">&#125;</div><div class="line">var allShow1 = funA1();</div><div class="line">var allShow2 = funA1();</div><div class="line">console.log(&quot;------------------------------------------------&quot;);</div></pre></td></tr></table></figure>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://www.cnblogs.com/polk6/p/3284839.html" target="_blank" rel="external">JavaScript function函数种类</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -242,9 +163,20 @@ console.log(&quot;------------------------------------------------&quot;);
 </nav>
 
 	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/01/23/2017-01-23-快速了解JavaScript中的函数/" data-title="快速了解JavaScript中的函数" data-url="http://www.tengtai.tk/2017/01/23/2017-01-23-快速了解JavaScript中的函数/"></div>
+</section>
+
 
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速了解JavaScript中的函数"><span class="toc-number">1.</span> <span class="toc-text">快速了解JavaScript中的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-普通函数"><span class="toc-number">1.1.</span> <span class="toc-text">1.普通函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-普通函数示例"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 普通函数示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-同名函数覆盖"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 同名函数覆盖,</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-arguments对象"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 arguments对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-“undefined”"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 “undefined”</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-匿名函数"><span class="toc-number">1.2.</span> <span class="toc-text">2.匿名函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-变量匿名函数"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 变量匿名函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-无名称匿名函数"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 无名称匿名函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-闭包函数"><span class="toc-number">1.3.</span> <span class="toc-text">3.闭包函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-全局引用与局部引用"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 全局引用与局部引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-有参数的闭包函数"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 有参数的闭包函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-函数内变量共享"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 函数内变量共享</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考"><span class="toc-number">1.3.4.</span> <span class="toc-text">参考</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -413,6 +345,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
@@ -497,6 +431,18 @@ $(document).ready(function(){
 
 
 
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tengtai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
 
 
 
@@ -534,7 +480,7 @@ $(document).ready(function(){
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  hm.src = "//hm.baidu.com/hm.js?6b67bf9e170287a3bd896be4ecee8176";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();

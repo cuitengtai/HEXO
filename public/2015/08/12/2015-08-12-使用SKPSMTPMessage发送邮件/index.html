@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://www.tengtai.tk/2015/08/12/2015-08-12-使用SKPSMTPMessage发送邮件/index.html">
 <meta property="og:site_name" content="光之晨曦">
 <meta property="og:description" content="使用SKPSMTPMessage发送邮件">
-<meta property="og:updated_time" content="2017-01-22T06:37:12.000Z">
+<meta property="og:updated_time" content="2017-02-28T14:38:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用SKPSMTPMessage发送邮件">
 <meta name="twitter:description" content="使用SKPSMTPMessage发送邮件">
@@ -93,13 +93,19 @@
 </header>
 	<div class="article-content">
 		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SMTP协议"><span class="toc-number">1.</span> <span class="toc-text">SMTP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SKPSMTPMessage"><span class="toc-number">2.</span> <span class="toc-text">SKPSMTPMessage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何使用"><span class="toc-number">2.1.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我遇到的坑"><span class="toc-number">2.2.</span> <span class="toc-text">我遇到的坑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
+		
+		</div>
+		
 		<p>在iOS开发里，可以发送邮件的第三方框架几乎没有，而iOS自带的框架又有诸多的不便，所以今天就来研究一下唯一算是比较好用的<code>SKPSMTPMessage</code>。</p>
-<p>##SMTP协议<br>先来看一下什么是<code>SMTP</code>：</p>
+<h2 id="SMTP协议"><a href="#SMTP协议" class="headerlink" title="SMTP协议"></a>SMTP协议</h2><p>先来看一下什么是<code>SMTP</code>：</p>
 <p><code>SMTP</code>（Simple Mail Transfer Protocol）即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，由它来控制信件的中转方式。<code>SMTP</code>协议属于TCP/IP协议簇，它帮助每台计算机在发送或中转信件时找到下一个目的地。通过<code>SMTP</code>协议所指定的服务器,就可以把E-mail寄到收信人的服务器上了，整个过程只要几分钟。<code>SMTP</code>服务器则是遵循<code>SMTP</code>协议的发送邮件服务器，用来发送或中转发出的电子邮件。</p>
 <p>简而言之<code>SMTP</code>就是邮件发送协议，而<code>SKPSMTPMessage</code>则是对协议的实现。</p>
-<p>##SKPSMTPMessage<br><a href="https://github.com/jetseven/skpsmtpmessage" target="_blank" rel="external">SKPSMTPMessage</a>是开源的邮件发送框架，由于框架比较老，所以没有使用<code>ARC</code>,但这丝毫不影响我们的使用。<code>SKPSMTPMessage</code>支持后台发送邮件，支持各种类型附件，功能还是相当强大的，我们可以随意定制UI，不受限制。</p>
-<p>###如何使用</p>
-<ul>
+<h2 id="SKPSMTPMessage"><a href="#SKPSMTPMessage" class="headerlink" title="SKPSMTPMessage"></a>SKPSMTPMessage</h2><p><a href="https://github.com/jetseven/skpsmtpmessage" target="_blank" rel="external">SKPSMTPMessage</a>是开源的邮件发送框架，由于框架比较老，所以没有使用<code>ARC</code>,但这丝毫不影响我们的使用。<code>SKPSMTPMessage</code>支持后台发送邮件，支持各种类型附件，功能还是相当强大的，我们可以随意定制UI，不受限制。</p>
+<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><ul>
 <li>首先是初始化以及邮件发送的基本设置</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">SKPSMTPMessage *testMsg = [[SKPSMTPMessage alloc] init];</div><div class="line">   //发送者</div><div class="line">   testMsg.fromEmail = @&quot;passion_wxm@163.com&quot;;</div><div class="line">   //发送给</div><div class="line">   testMsg.toEmail = @&quot;413085129@qq.com&quot;;</div><div class="line">   //抄送联系人列表，如：@&quot;664742641@qq.com;1@qq.com;2@q.com;3@qq.com&quot;</div><div class="line">   testMsg.ccEmail = @&quot;lanyuu@live.cn&quot;;</div><div class="line">   //密送联系人列表，如：@&quot;664742641@qq.com;1@qq.com;2@q.com;3@qq.com&quot;</div><div class="line">   testMsg.bccEmail = @&quot;664742641@qq.com&quot;;</div><div class="line">   //发送有些的发送服务器地址</div><div class="line">   testMsg.relayHost = @&quot;smtp.163.com&quot;;</div><div class="line">   //需要鉴权</div><div class="line">   testMsg.requiresAuth = YES;</div><div class="line">   //发送者的登录账号</div><div class="line">   testMsg.login = @&quot;passion_wxm&quot;;</div><div class="line">   //发送者的登录密码</div><div class="line">   testMsg.pass = @&quot;your_password&quot;;</div><div class="line">   //邮件主题</div><div class="line">   testMsg.subject = [NSString stringWithCString:&quot;来自iphone socket的测试邮件&quot; encoding:NSUTF8StringEncoding ];</div><div class="line">   testMsg.wantsSecure = YES; // smtp.gmail.com doesn&apos;t work without TLS!</div><div class="line">   // Only do this for self-signed certs!</div><div class="line">   // testMsg.validateSSLChain = NO;</div><div class="line">   testMsg.delegate = self;</div></pre></td></tr></table></figure>
@@ -111,11 +117,10 @@
 <li>最后就是一些代理方法了</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (void)messageSent:(SKPSMTPMessage *)message</div><div class="line">&#123;    </div><div class="line">    //发送成功</div><div class="line">    NSLog(@&quot;delegate - message sent&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)messageFailed:(SKPSMTPMessage *)message error:(NSError *)error</div><div class="line">&#123;    </div><div class="line">    //发送失败 </div><div class="line">    NSLog(@&quot;delegate - error(%d): %@&quot;, [error code], [error localizedDescription]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>###我遇到的坑</p>
-<ul>
+<h3 id="我遇到的坑"><a href="#我遇到的坑" class="headerlink" title="我遇到的坑"></a>我遇到的坑</h3><ul>
 <li>使用上面的写法会出现一个严重的问题，那就是发送等待过程中，APP会crash掉，起初我以为是发送数据量太大，后来发现其实不是这么回事，最后我在<code>stackoverflow</code>上面找到了<a href="http://stackoverflow.com/questions/16397120/app-crashes-after-sending-mail-using-smtp" target="_blank" rel="external">答案</a>，原因是在发送过程中，<code>SKPSMTPMessage</code>实例被释放掉，所以导致crash，最好的做法是将<code>SKPSMTPMessage</code>实例声明为强引用的属性，这样就没有问题了。</li>
 </ul>
-<p>##最后<br>愿大家玩的高兴。^_^</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>愿大家玩的高兴。^_^</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -171,9 +176,20 @@
 </nav>
 
 	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/12/2015-08-12-使用SKPSMTPMessage发送邮件/" data-title="使用SKPSMTPMessage发送邮件" data-url="http://www.tengtai.tk/2015/08/12/2015-08-12-使用SKPSMTPMessage发送邮件/"></div>
+</section>
+
 
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SMTP协议"><span class="toc-number">1.</span> <span class="toc-text">SMTP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SKPSMTPMessage"><span class="toc-number">2.</span> <span class="toc-text">SKPSMTPMessage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何使用"><span class="toc-number">2.1.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我遇到的坑"><span class="toc-number">2.2.</span> <span class="toc-text">我遇到的坑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -342,6 +358,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
@@ -426,6 +444,18 @@ $(document).ready(function(){
 
 
 
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tengtai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
 
 
 
@@ -463,7 +493,7 @@ $(document).ready(function(){
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  hm.src = "//hm.baidu.com/hm.js?6b67bf9e170287a3bd896be4ecee8176";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();

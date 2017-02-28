@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826201715025.png?375x689_130">
 <meta property="og:image" content="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826202654013.png?239x59_130">
 <meta property="og:image" content="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826203706040.png?710x429_130">
-<meta property="og:updated_time" content="2017-02-27T08:10:34.000Z">
+<meta property="og:updated_time" content="2017-02-28T14:40:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UITableView的分割线">
 <meta name="twitter:description" content="UITableView的分割线">
@@ -98,14 +98,19 @@
 </header>
 	<div class="article-content">
 		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先"><span class="toc-number">1.</span> <span class="toc-text">首先</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Do-It"><span class="toc-number">2.</span> <span class="toc-text">Do It</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在iOS7"><span class="toc-number">2.1.</span> <span class="toc-text">在iOS7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在iOS8"><span class="toc-number">2.2.</span> <span class="toc-text">在iOS8</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
+		
+		</div>
+		
 		<p>在iOS7与iOS8中的UITableView的分割线的一些设置问题。</p>
-<p>##首先<br>在iOS中UITableView的分割线默认是左边距离边距15像素，但是有时我们需要它左对齐。<br>这是正常的分割线：</p>
+<h2 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h2><p>在iOS中UITableView的分割线默认是左边距离边距15像素，但是有时我们需要它左对齐。<br>这是正常的分割线：</p>
 <p><img src="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826201621072.png?375x689_130" alt="正常"></p>
 <p>我们的需求：</p>
 <p><img src="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826201715025.png?375x689_130" alt="需求"></p>
-<p>##Do It</p>
-<p>###在iOS7</p>
-<p>在iOS7上，我们有多种方式来解决这个问题。</p>
+<h2 id="Do-It"><a href="#Do-It" class="headerlink" title="Do It"></a>Do It</h2><h3 id="在iOS7"><a href="#在iOS7" class="headerlink" title="在iOS7"></a>在iOS7</h3><p>在iOS7上，我们有多种方式来解决这个问题。</p>
 <ul>
 <li><p>使用代码的方式</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">self.tableView.separatorInset = UIEdgeInsetsZero;</div></pre></td></tr></table></figure>
@@ -118,30 +123,14 @@
 <ul>
 <li>或者直接把分割线样式设置为<code>UITableViewCellSeparatorStyleNone</code>,然后自己在<code>cell</code>的底部添加一个高度为<code>1</code>的<code>UIView</code></li>
 </ul>
-<p>…</p>
-<p>###在iOS8<br>不幸的是在iOS8上，上述的两种方法都不行，为什么呢？其实是<code>layoutMargins</code>这个属性在作怪，这是iOS8新添加的一个属性，下面是官方的介绍：</p>
+<h3 id="在iOS8"><a href="#在iOS8" class="headerlink" title="在iOS8"></a>在iOS8</h3><p>不幸的是在iOS8上，上述的两种方法都不行，为什么呢？其实是<code>layoutMargins</code>这个属性在作怪，这是iOS8新添加的一个属性，下面是官方的介绍：</p>
 <p><img src="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826203706040.png?710x429_130" alt="layoutMargins"></p>
-<p>那么，我们就需要使用下面这段代码了：</p>
-<pre><code>-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-    if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [tableView setSeparatorInset:UIEdgeInsetsZero];
-    }
-
-    if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [tableView setLayoutMargins:UIEdgeInsetsZero];
-       }
-
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-       }
-}
-</code></pre><p><code>layoutMargins</code>在子控件与父控件布局中起了决定性的作用。</p>
+<p>那么，我们就需要使用下面这段代码了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath</div><div class="line">&#123;</div><div class="line">    </div><div class="line">    if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) &#123;</div><div class="line">       	[tableView setSeparatorInset:UIEdgeInsetsZero];</div><div class="line">    &#125;</div><div class="line">        </div><div class="line">    if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) &#123;</div><div class="line">      	 [tableView setLayoutMargins:UIEdgeInsetsZero];</div><div class="line">    	&#125;</div><div class="line">        </div><div class="line">    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) &#123;</div><div class="line">       	[cell setLayoutMargins:UIEdgeInsetsZero];</div><div class="line">    	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>layoutMargins</code>在子控件与父控件布局中起了决定性的作用。</p>
 <p>但是这一段代码会在每个cell绘制时候频繁调用，这也就意味着性能的下降，所以还有一种方法来实现：</p>
 <pre><code>self.tableView.separatorInset = UIEdgeInsetsZero;
 self.tableView.layoutMargins = UIEdgeInsetsZero;
-</code></pre><p>##最后<br>愿大家玩的高兴。^_^</p>
+</code></pre><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>愿大家玩的高兴。^_^</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -197,9 +186,20 @@ self.tableView.layoutMargins = UIEdgeInsetsZero;
 </nav>
 
 	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/26/2015-08-26-UITableView的分割线/" data-title="UITableView的分割线" data-url="http://www.tengtai.tk/2015/08/26/2015-08-26-UITableView的分割线/"></div>
+</section>
+
 
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先"><span class="toc-number">1.</span> <span class="toc-text">首先</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Do-It"><span class="toc-number">2.</span> <span class="toc-text">Do It</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在iOS7"><span class="toc-number">2.1.</span> <span class="toc-text">在iOS7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在iOS8"><span class="toc-number">2.2.</span> <span class="toc-text">在iOS8</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -368,6 +368,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
@@ -452,6 +454,18 @@ $(document).ready(function(){
 
 
 
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tengtai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
 
 
 
@@ -489,7 +503,7 @@ $(document).ready(function(){
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  hm.src = "//hm.baidu.com/hm.js?6b67bf9e170287a3bd896be4ecee8176";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();

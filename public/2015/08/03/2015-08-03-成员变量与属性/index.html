@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://www.tengtai.tk/2015/08/03/2015-08-03-成员变量与属性/index.html">
 <meta property="og:site_name" content="光之晨曦">
 <meta property="og:description" content="成员变量与属性">
-<meta property="og:updated_time" content="2017-01-22T06:37:12.000Z">
+<meta property="og:updated_time" content="2017-02-28T14:31:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="成员变量与属性">
 <meta name="twitter:description" content="成员变量与属性">
@@ -93,24 +93,19 @@
 </header>
 	<div class="article-content">
 		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-number">1.</span> <span class="toc-text">开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性"><span class="toc-number">2.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li></ol>
+		
+		</div>
+		
 		<p>最近在公司的项目里面发现了很多类成员变量与属性同时出现，感觉很混乱，之前一直是在用属性<code>@property</code>声明变量，所以对两者之间的区别比较困惑，于是便仔细的探索了一番。</p>
-<p>##开始<br>先来看一看那些让人感觉乱糟糟的成员变量与属性共用的代码吧。</p>
-<pre><code>@interface SearchInfoView()&lt;UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,SearchCellDelegate&gt; 
-{
-    UIImageView *_backGroundImg;
-    NSMutableArray *_oldSearchArray; 
-        UIButton *_rightBtn;
-}
-@property(nonatomic, strong)UITableView *historyTableView;
-@property(nonatomic, assign)UIViewController *currentViewControll;
-@end
-</code></pre><p>真的很乱，对于我来说真的是无法忍受，但是他们之间到底有何不同呢？</p>
-<p>##属性<br>先来说一下属性<code>@property</code>，属性可以自己生成<code>getter</code>和<code>setter</code>方法，并生成一个待下划线的成员变量，当然你还可以通过<code>@synthesize</code>关键字将实例变量重命名。在ARC下对象的存在与否全看有没有强指针的引用，我们无需去考虑计数器了，配合一些如：<code>strong</code>, <code>weak</code>, <code>rassign</code>等关键字，我们不用再去太关心内存。</p>
-<p>##说明<br>iOS 5更新之后，苹果是建议以以下的方式来使用：</p>
-<pre><code>@interface MyViewController :UIViewController
-@property (nonatomic, retain) UIButton *myButton;
-@end
-</code></pre><p>我看了一些著名的开源框架如：<code>AFNetworking</code>以及苹果官方代码来看，基本上很少使用成员变量了，所以我们平时尽可能的使用<code>@property</code>，在使用时还是很方便的。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>先来看一看那些让人感觉乱糟糟的成员变量与属性共用的代码吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@interface SearchInfoView()&lt;UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,SearchCellDelegate&gt; </div><div class="line">&#123;</div><div class="line">    UIImageView *_backGroundImg;</div><div class="line">    NSMutableArray *_oldSearchArray; </div><div class="line">    UIButton *_rightBtn;</div><div class="line">&#125;</div><div class="line">@property(nonatomic, strong)UITableView *historyTableView;</div><div class="line">@property(nonatomic, assign)UIViewController *currentViewControll;</div><div class="line">@end</div></pre></td></tr></table></figure></p>
+<p>真的很乱，对于我来说真的是无法忍受，但是他们之间到底有何不同呢？</p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>先来说一下属性<code>@property</code>，属性可以自己生成<code>getter</code>和<code>setter</code>方法，并生成一个待下划线的成员变量，当然你还可以通过<code>@synthesize</code>关键字将实例变量重命名。在ARC下对象的存在与否全看有没有强指针的引用，我们无需去考虑计数器了，配合一些如：<code>strong</code>, <code>weak</code>, <code>rassign</code>等关键字，我们不用再去太关心内存。</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>iOS 5更新之后，苹果是建议以以下的方式来使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@interface MyViewController :UIViewController</div><div class="line">@property (nonatomic, retain) UIButton *myButton;</div><div class="line">@end</div></pre></td></tr></table></figure></p>
+<p>我看了一些著名的开源框架如：<code>AFNetworking</code>以及苹果官方代码来看，基本上很少使用成员变量了，所以我们平时尽可能的使用<code>@property</code>，在使用时还是很方便的。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -166,9 +161,20 @@
 </nav>
 
 	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/03/2015-08-03-成员变量与属性/" data-title="成员变量与属性" data-url="http://www.tengtai.tk/2015/08/03/2015-08-03-成员变量与属性/"></div>
+</section>
+
 
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-number">1.</span> <span class="toc-text">开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性"><span class="toc-number">2.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -337,6 +343,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
@@ -421,6 +429,18 @@ $(document).ready(function(){
 
 
 
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tengtai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
 
 
 
@@ -458,7 +478,7 @@ $(document).ready(function(){
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  hm.src = "//hm.baidu.com/hm.js?6b67bf9e170287a3bd896be4ecee8176";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();

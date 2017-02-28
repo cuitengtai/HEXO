@@ -35,16 +35,18 @@ description: 编写高质量iOS与OS X代码的52个有效方法
 
 <del>#define ANIMATION_DURATION 0.3</del>
 
+```
+static const NSTimeInterval kAnimationDuration = 0.3
+```
 
-    static const NSTimeInterval kAnimationDuration = 0.3
-	
 1、如果不打算公开变量，可在.m文件中，同时使用static和const来定义常量，如果试图修改该变量编译器就会报错。这种变量只在编译单元内可见，由于不在”全局符号表“中所以无需增加前缀。
 2、如果打算公开某个常量，则需要这样来实现
-
-	// EOCAnimatedView.h
-	extern const NSTimerInterval EOCAnimatedViewAnimationDuration;
-	// EOCAnimatedView.m
-	const NSTimerInterval EOCAnimatedViewAnimationDuration = 0.3;
+```
+// EOCAnimatedView.h
+extern const NSTimerInterval EOCAnimatedViewAnimationDuration;
+// EOCAnimatedView.m
+const NSTimerInterval EOCAnimatedViewAnimationDuration = 0.3;
+```
 	
 在头文件中声明，在实现文件中定义，由于在”全局符号表“中，为避免名称冲突，最好用与之相关的类名作为前缀。这样定义常量是不可被更改的，而使用#define预处理指令定义的常量很可能遭到别人的无意更改，这是非常危险的事情。
 	
@@ -53,29 +55,32 @@ description: 编写高质量iOS与OS X代码的52个有效方法
 2、应该用枚举来表示状态机的状态，状态码等值。
 3、如果枚举的多个选项可以同时组合，将这些项定义为2的幂，以便可以通过按位或操作将其组合起来。
 例如：AnimationEasyIn | AnimationLeft
-	
-	typedef NS_ENUM(NSUInteger, AnimationBehavior) {
-    	AnimationEasyIn = 1 << 0,
-    	AnimationLeft = 1 << 1
-	};
+```
+typedef NS_ENUM(NSUInteger, AnimationBehavior) {
+AnimationEasyIn = 1 << 0,
+AnimationLeft = 1 << 1
+};
+```
 4、处理枚举类型的switch语句中不要实现default分支，这样的话有新枚举加入，编译器就会提示开发者，switch语句中并未处理所有的枚举。
 ## 对象、消息、运行期
 ### 理解“属性”这一概念
 1、尽量不要直接定义实例变量，推荐使用属性"@proproty"来合成存取方法。使用点语法调用来访问变量。
 2、在设置属性所对应的实例变量时，一定要遵循该属性所声明的语义。
 即：
-	@property (nonatomic, copy)NSString *name;
+```
+@property (nonatomic, copy)NSString *name;
 	
-	- (void)setName:(NSString *)name
-	{
-	    _name = [name copy];
-	}
-	疑问：
-	- (void)setName:(NSString *)name
-	{
-	   // _name = [name copy];
-	   _name = name;
-	}
+- (void)setName:(NSString *)name
+{
+    _name = [name copy];
+}
+疑问：
+- (void)setName:(NSString *)name
+{
+   // _name = [name copy];
+   _name = name;
+}
+```
 经过测试，使用_name = name，和上面的效果是一样的，内存地址发生了变化。
 ### 在对象内部尽量直接访问实例变量
 强烈建议在读取实例变量时候采用直接访问的形式，而在设置实例变量的时候通过属性来做。
@@ -89,14 +94,15 @@ description: 编写高质量iOS与OS X代码的52个有效方法
 注意：
 1、在初始化方法和dealloc方法中，应该直接访问实例变量，防止子类覆盖设置方法。
 2、懒加载中，通过获取方法来访问属性，否则实例变量永远不会被初始化。
-
-	- (Person *)person {
-		if (!_person) {
-			_person = [Person alloc] init];
-		}
-		return _person;
+```
+- (Person *)person {
+	if (!_person) {
+		_person = [Person alloc] init];
 	}
-	
+	return _person;
+}
+```
+
 ### 理解“对象等同性”这一概念
 1、重写isEqual和hash方法，判断对象的等同性。
 2、利用标识符，类似于数据库的主键，来判断对象的等同性。
@@ -137,9 +143,10 @@ description: 编写高质量iOS与OS X代码的52个有效方法
 如：	
 <del>if（[object class] == [Person class]）{
 }<del>
-
-    if（[object isMemberOfClass:[Person class]] {
-    }
+```
+if（[object isMemberOfClass:[Person class]] {
+}
+```
 
 ## 接口与API设计
 ### 用前缀避免命名空间冲突
@@ -151,11 +158,13 @@ description: 编写高质量iOS与OS X代码的52个有效方法
 1、在类中提供一个全能的初始化方法，供其他初始化方法调用。
 2、若全能初始化方法与超类的不同，则需要覆写超类中对应的方法。
 3、如果超类的初始化方法不适用于子类，那么应该覆写这个超类方法，并在其中抛出异常。
+```
+-(id)initWithWidth:(float)width andHeight:(float)height
+{
+   @throw [NSException exceptionWithName:...];
+}
+```
 
-    -(id)initWithWidth:(float)width andHeight:(float)height
-    {
-        @throw [NSException exceptionWithName:...];
-    }
 ### 实现description方法
 1、实现description方法返回一串有意义的字符串，来描述该对象，使用NSLog()打印对象时调用。
 2、实现debugDescription方法返回一串有意义的字符串，来描述该对象，在开发者断点调试通过LLDB命令po对象时调用。
@@ -168,8 +177,10 @@ description: 编写高质量iOS与OS X代码的52个有效方法
 1、尽量使用长方法名，清晰的说明方法的意思，但是也要尽量言简意赅，可参考UIKit命名规范。
 
 <del>-(id)initWithSize:(float)width :(float)height<del>
-    
-    -(id)initWithWidth:(float)width andHeight:(float)height
+```
+-(id)initWithWidth:(float)width andHeight:(float)height
+```
+
 ### 为私有方法名加前缀
 1、给私有方法的名称加上前缀，便于跟公共方法区分。
 2、不能用单一下划线做前缀，这是苹果私有API的前缀，会冲突。
@@ -177,22 +188,23 @@ description: 编写高质量iOS与OS X代码的52个有效方法
 1、“-fojc-arc-exception”编译标识可以在执行异常代码时不抛出异常
 2、异常用于处理致命问题，无需考虑恢复问题，应用程序直接退出，非致命问题使用NSError对象。
 3、通过“输出参数”方式把NSError对象回传给调用者
-    
-    NSError *error = nil;
-    BOOL ret = [object doSomething:&error];
-    if (ret) {
-        // There was an error
-    }
-    - (Bool)doSomething:(NSError **)error {
-        if (// there was an error) {
-            if (error) {
-                *error = [NSError errorWithDomain:...];
-            }
-            return NO;
-        } else {
-            return YES;
-        }
-    }
+``` 
+NSError *error = nil;
+BOOL ret = [object doSomething:&error];
+if (ret) {
+   // There was an error
+}
+- (Bool)doSomething:(NSError **)error {
+   if (// there was an error) {
+       if (error) {
+           *error = [NSError errorWithDomain:...];
+       }
+       return NO;
+   } else {
+       return YES;
+   }
+}
+```
     
 在error要指向一个新的对象时（解引用），必须先保证error参数不是nil,因为空指针解引用会导致“段错误”，并使应用程序崩溃。调用者在不关心具体错误时，会给error参数传入nil,因此必须判断这种情况。
 ### 理解NSCopying协议
@@ -207,20 +219,22 @@ description: 编写高质量iOS与OS X代码的52个有效方法
 2、将委托对象应该支持的接口定义成协议，在协议中将可能需要处理的事件定义为方法。
 3、当使用委托模式传递数据时，该模式也叫“数据源协议”，如UITableViewDataSource
 4、使用“位域”（含有位段的结构体），将委托对象是否响应相关协议的信息缓存其中。
+```
+struct {
+   unsigned int didReceiveData : 1;
+   unsigned int didFailWithError : 1;
+   unsigned int didUpdateProgressTo : 1;
+} _delegateFlags;
+    
+- (void)setDelegate:(id<...>)delegate {
+   _delegateFlags.didReceiveData = [delegate respondsToSelector:@selctor(...)];
+}
+    
+if (_delegateFlags.didReceiveData) {
+   [_delegate ....];
+}
+```
 
-    struct {
-        unsigned int didReceiveData : 1;
-        unsigned int didFailWithError : 1;
-        unsigned int didUpdateProgressTo : 1;
-    } _delegateFlags;
-    
-    - (void)setDelegate:(id<...>)delegate {
-        _delegateFlags.didReceiveData = [delegate respondsToSelector:@selctor(...)];
-    }
-    
-    if (_delegateFlags.didReceiveData) {
-        [_delegate ....];
-    }
 ### 将类的实现代码分散到便于管理的数个分类之中
 1、使用分类机制把类的实现代码划分成易于管理的小块。
 2、将应该私有的方法归入名叫Private的分类中，以隐藏实现细节。
@@ -254,11 +268,13 @@ description: 编写高质量iOS与OS X代码的52个有效方法
 3、ARC对引用计数进行了特殊优化，如果发现对象在运行期进行多次保留和释放操作，会成对的移除这些操作，只保留有用操作，从而提高效率。
 4、ARC对存取方法进行了优化，不需要再去关注先保留新值，再释放旧值，直接赋值即可。
 5、ARC借助Objective-C++的特性清理对象，回收Objective-C对象调用多有C++对象的“析构函数"，如发现某个对象里面有C++对象，会生成.cxx_destruct的方法，并在该方法中生成清理内存所需代码。如果有非Objective-C对象（CoreFoundation对象或者malloc()分配的堆内存），不会调用父类的dealloc方法，会生成.cxx_destruct的方法，并在该方法中生成清理内存所需代码，在生成的代码中自动调用父类的dealloc方法。因此可以这样写：
+```
+-(void)dealloc {
+   CFRelease(...);
+   free(...);
+}
+```
 
-    -(void)dealloc {
-        CFRelease(...);
-        free(...);
-    }
 ### 在dealloc方法中只释放引用并解除监听
 1、可以在dealloc方法中注销通知观察者等。
 2、比如文件，套接字，大块内存等开销较大或者系统内稀缺资源不可以在dealloc方法中释放，需要用完即释放。
@@ -291,10 +307,12 @@ description: 编写高质量iOS与OS X代码的52个有效方法
 2、使用block小心因捕获了self而造成循环引用的情况。如果访问了类的实例变量，self也会被捕获。
 3、block可以分配在栈或者堆上，也可以是全局的。分配在栈上的block可以拷贝到堆上，这样的话，就和标准的Objective-C对象一样，具备引用计数了。
 4、全局的block无法捕获任何状态（变量），运行时也无需状态参与，所使用的内存区域在编译时就确定了。
+```
+void (^block)() = ^{
+   NSLog("This is a block!");
+}；
+```
 
-    void (^block)() = ^{
-        NSLog("This is a block!");
-    }；
 ### 为常用的块类型创建typedef
 1、以typedef重新定义block类型，可令块block变量用起来更加简单，可读性更好。
 2、定义新类型时遵循现有命名习惯，不要发生命名冲突。
@@ -303,41 +321,45 @@ description: 编写高质量iOS与OS X代码的52个有效方法
 1、使用block来取代delegate可以使代码更加紧凑，便于阅读。
 2、在网络请求的API设计中，尽量用一个handlerl来处理数据及错误，更加灵活。
 推荐：
-
-     [fetcher startWithCompletionHander:^(NSData *data, NSError *error){
-        if (error) {
-            // failed
-        } else {
-            // success
-        }
-     }];
-    
+```
+[fetcher startWithCompletionHander:^(NSData *data, NSError *error){
+   if (error) {
+       // failed
+   } else {
+       // success
+   }
+}];
+```
+  
 不推荐：
-
-    [fetcher startWithCompletionHandler:^(NSData *data){
-        // success
-    } failureHandler:^(NSError *error){
-        // failed
-    }];
+```
+[fetcher startWithCompletionHandler:^(NSData *data){
+   // success
+} failureHandler:^(NSError *error){
+   // failed
+}];
+```
     
 3、设计API是如果用到handler块，可以增加一个参数，使调用者可以通过此参数来决定应该把块安排在哪个队列执行。
 ### 使用块引用其所属对象时不要出现保留环
 1、如果块所捕获的对象直接或者间接保留了块本身，那么就会造成保留环问题。
 2、一定要找一个适当的时机解除保留环，而不能把责任推给API的调用者。
 以下是两种会出现保留环的写法：
+```
+1、_fetcher捕获了block block捕获了_fetcher
+_fetcher = [[xxx alloc] init];// 属性
+[_fetcher startWithCompletionHander:^(NSData *data, NSError *error){
+       NSLog(@"%@", fetcher.url);
+       _fetchData = data;
+}];
+2、fetcher捕获了block block捕获了fetcher.url
+xxx *fetcher = [[xxx alloc] init];// 临时变量
+[fetcher startWithCompletionHander:^(NSData *data, NSError *error){
+       NSLog(@"%@", fetcher.url);
+       _fetchData = data;
+}];
+```
 
-    1、_fetcher捕获了block block捕获了_fetcher
-    _fetcher = [[xxx alloc] init];// 属性
-    [_fetcher startWithCompletionHander:^(NSData *data, NSError *error){
-            NSLog(@"%@", fetcher.url);
-            _fetchData = data;
-    }];
-    2、fetcher捕获了block block捕获了fetcher.url
-     xxx *fetcher = [[xxx alloc] init];// 临时变量
-    [fetcher startWithCompletionHander:^(NSData *data, NSError *error){
-            NSLog(@"%@", fetcher.url);
-            _fetchData = data;
-    }];
 解决方案：
 1、weakSelf和strongSelf。
 2、在block调用后置为nil。
@@ -381,22 +403,31 @@ description: 编写高质量iOS与OS X代码的52个有效方法
 2、load方法的实现尽量精简，它不遵循那套继承规则，很难确定执行顺序，且load方式执行时应用会阻塞，如果在该方法里面执行了大量的耗时操作，那么程序就会无响应，所以一般不要使用此方法。
 3、+(void)initialize 会在程序首次使用该类之前调用，且只调用一次。与load方法的区别：首先它是“惰性”调用，只有程序在用到该类才会调用。此时运行时是正常状态，且执行环境是线程安全的。
 4、在编写load方法与initialize要保证代码实现尽量简单，除了初始化全局属性外，最好也不要调用自己的其他的方法。如：无法再编译期设定的全局常量，可以放在initialize方法里面初始化。
+
 ### 别忘了NSTimer会保留其目标对象
 1、NSTimer对象会保留其目标对象，直到计时器本身失效为止，调用invalidate方法可令计时器失效，另外，一次性的计时器在触发完任务之后也会失效。
 2、反复执行任务的计时器很容易引入保留环，如果计时器的目标对象又保留了计时器本身，那么肯定会导致保留环，这种保留环关系，可能是由于直接或者间接发生的。
 3、可以扩充NSTimer的功能，用block来打破保留环。
    // 把block作为userInfo的参数传入，一定要先拷贝到堆上，不然一会执行block时可能就被释放了。
-   
-     + (void)_yy_ExecBlock:(NSTimer *)timer {
-       if ([timer userInfo]) {
-           void (^block)(NSTimer *timer) = (void (^)(NSTimer *timer))[timer userInfo];
-           block(timer);
-       }
-    }
-    + (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)seconds block:(void (^)(NSTimer *timer))block repeats:(BOOL)repeats {
-       return [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(_yy_ExecBlock:) userInfo:[block copy] repeats:repeats];
-    }
-****
+```
++ (void)_yy_ExecBlock:(NSTimer *)timer {
+  if ([timer userInfo]) {
+      void (^block)(NSTimer *timer) = (void (^)(NSTimer *timer))[timer userInfo];
+      block(timer);
+  }
+}
++ (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)seconds 
+                                     block:(void (^)(NSTimer *timer))block 
+                                   repeats:(BOOL)repeats {
+                                 
+  return [NSTimer scheduledTimerWithTimeInterval:seconds 
+                                          target:self
+                                        selector:@selector(_yy_ExecBlock:)
+                                        userInfo:[block copy]
+                                         repeats:repeats];
+}
+```
+
     
 
   

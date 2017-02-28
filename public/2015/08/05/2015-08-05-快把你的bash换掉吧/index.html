@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://www.tengtai.tk/2015/08/05/2015-08-05-快把你的bash换掉吧/index.html">
 <meta property="og:site_name" content="光之晨曦">
 <meta property="og:description" content="快把你的bash换掉吧">
-<meta property="og:updated_time" content="2017-01-22T06:37:12.000Z">
+<meta property="og:updated_time" content="2017-02-28T14:34:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快把你的bash换掉吧">
 <meta name="twitter:description" content="快把你的bash换掉吧">
@@ -93,73 +93,28 @@
 </header>
 	<div class="article-content">
 		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是shell？"><span class="toc-number">1.</span> <span class="toc-text">什么是shell？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#oh-my-zsh"><span class="toc-number">2.</span> <span class="toc-text">oh-my-zsh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">3.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卸载"><span class="toc-number">4.</span> <span class="toc-text">卸载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主题"><span class="toc-number">5.</span> <span class="toc-text">主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">6.</span> <span class="toc-text">最后</span></a></li></ol>
+		
+		</div>
+		
 		<p>对于经常使用Mac终端的人而言，需要牢记大量复杂的命令，而开源的<code>zsh</code>则帮助用户减少了大脑的负荷，增加了使用的便捷性，而且还有许多主题可以随意更换，用起来更加的爽了。所以，赶紧换掉那个陈旧的<code>bash</code>吧.</p>
-<p>##什么是shell？<br><code>shell</code>是Linux/Unix的一个外壳，你理解成衣服也行。它负责外界与内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。所以，工具用着不爽，当然就要更换一个效率更高的，功能更强大的，而<code>zsh</code>更是被誉为<code>终端的终结者</code>。</p>
-<p>想知道自己的电脑支持几种<code>shell</code>，可以用下面这个命令：</p>
-<pre><code>cat /etc/shells
-</code></pre><p>然后你会看见:</p>
-<pre><code>/bin/bash
-/bin/csh
-/bin/ksh
-/bin/sh
-/bin/tcsh
-/bin/zsh
-</code></pre><p>这样的东西。好吧，科普到此结束了。</p>
-<p>##oh-my-zsh<br>废话不多说，我们今天的主角就是<code>oh-my-zsh</code>，它是<code>zsh</code>的一种，拥有着强大的功能和丰富的主题。在<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">github</a>上超过两万多颗星星。<a href="http://ohmyz.sh" target="_blank" rel="external">这是</a>官方的介绍，有兴趣的可以去看一看。</p>
-<p>##安装<br><code>oh-my-zsh</code>的安装很简单，但是前提是你的电脑应该有<code>git</code>，输入:</p>
-<pre><code>git --version
-</code></pre><p>查看<code>git</code>版本。</p>
-<p>最简单的安装方法，在终端中输入:</p>
-<pre><code>sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
-</code></pre><p>其他安装方法不再赘述，详情见<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">oh-my-zsh</a>的<code>github</code>地址。</p>
-<p>##卸载<br>卸载之后，终端将使用默认的<code>shell</code>，一般是<code>bash</code>。</p>
-<pre><code>uninstall_oh_my_zsh
-</code></pre><p>##主题<br><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes" target="_blank" rel="external">这里</a>有上百种主题，总有一款你喜欢的。想要修改主题，需要修改<code>.zshrc</code>文件，这个文件是隐藏的，所以最好在终端中修改，在终端中输入：</p>
-<pre><code>vi ~/.zshrc
-</code></pre><p>然后会出现：</p>
-<pre><code># Path to your oh-my-zsh installation.
-export ZSH=/Users/ctt/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to &quot;random&quot;, it&apos;ll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME=&quot;robbyrussell&quot;
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE=&quot;true&quot;
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE=&quot;true&quot;
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE=&quot;true&quot;
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-&quot;~/.zshrc&quot; 84L, 2798C
-</code></pre><p>把<code>ZSH_THEME=&quot;robbyrussell&quot;</code>中的主题改成你想要的名字保存即可,但是必须是<code>.oh-my-zsh/themes</code>中有的。</p>
-<pre><code>➜  ~  cd .oh-my-zsh 
-➜  .oh-my-zsh git:(master) ls
-MIT-LICENSE.txt custom          oh-my-zsh.sh    themes
-README.markdown lib             plugins         tools
-cache           log             templates
-➜  .oh-my-zsh git:(master) cd themes 
-➜  themes git:(master) ls
-3den.zsh-theme                kafeitu.zsh-theme
-Soliah.zsh-theme              kardan.zsh-theme
-adben.zsh-theme               kennethreitz.zsh-theme
-af-magic.zsh-theme            kiwi.zsh-theme
-afowler.zsh-theme             kolo.zsh-theme
-agnoster.zsh-theme            kphoen.zsh-theme
-alanpeabody.zsh-theme         lambda.zsh-theme
-amuse.zsh-theme               linuxonly.zsh-theme
-apple.zsh-theme               lukerandall.zsh-theme
-...
-</code></pre><p>##最后<br>愿大家玩的高兴。^_^</p>
+<h2 id="什么是shell？"><a href="#什么是shell？" class="headerlink" title="什么是shell？"></a>什么是shell？</h2><p><code>shell</code>是Linux/Unix的一个外壳，你理解成衣服也行。它负责外界与内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。所以，工具用着不爽，当然就要更换一个效率更高的，功能更强大的，而<code>zsh</code>更是被誉为<code>终端的终结者</code>。</p>
+<p>想知道自己的电脑支持几种<code>shell</code>，可以用下面这个命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/shells</div></pre></td></tr></table></figure></p>
+<p>然后你会看见:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/bin/bash</div><div class="line">/bin/csh</div><div class="line">/bin/ksh</div><div class="line">/bin/sh</div><div class="line">/bin/tcsh</div><div class="line">/bin/zsh</div></pre></td></tr></table></figure></p>
+<p>这样的东西。好吧，科普到此结束了。</p>
+<h2 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h2><p>废话不多说，我们今天的主角就是<code>oh-my-zsh</code>，它是<code>zsh</code>的一种，拥有着强大的功能和丰富的主题。在<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">github</a>上超过两万多颗星星。<a href="http://ohmyz.sh" target="_blank" rel="external">这是</a>官方的介绍，有兴趣的可以去看一看。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>oh-my-zsh</code>的安装很简单，但是前提是你的电脑应该有<code>git</code>，输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git --version</div></pre></td></tr></table></figure></p>
+<p>查看<code>git</code>版本。</p>
+<p>最简单的安装方法，在终端中输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</div></pre></td></tr></table></figure></p>
+<p>其他安装方法不再赘述，详情见<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">oh-my-zsh</a>的<code>github</code>地址。</p>
+<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><p>卸载之后，终端将使用默认的<code>shell</code>，一般是<code>bash</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uninstall_oh_my_zsh</div></pre></td></tr></table></figure></p>
+<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes" target="_blank" rel="external">这里</a>有上百种主题，总有一款你喜欢的。想要修改主题，需要修改<code>.zshrc</code>文件，这个文件是隐藏的，所以最好在终端中修改，在终端中输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi ~/.zshrc</div></pre></td></tr></table></figure></p>
+<p>然后会出现：<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># Path to your oh-my-zsh installation.</div><div class="line">export ZSH=/Users/ctt/.oh-my-zsh</div><div class="line"></div><div class="line"># Set name of the theme to load.</div><div class="line"># Look in ~/.oh-my-zsh/themes/</div><div class="line"># Optionally, if you set this to &quot;random&quot;, it&apos;ll load a random theme each</div><div class="line"># time that oh-my-zsh is loaded.</div><div class="line">ZSH_THEME=&quot;robbyrussell&quot;</div><div class="line"></div><div class="line"># Uncomment the following line to use case-sensitive completion.</div><div class="line"># CASE_SENSITIVE=&quot;true&quot;</div><div class="line"></div><div class="line"># Uncomment the following line to use hyphen-insensitive completion. Case</div><div class="line"># sensitive completion must be off. _ and - will be interchangeable.</div><div class="line"># HYPHEN_INSENSITIVE=&quot;true&quot;</div><div class="line"></div><div class="line"># Uncomment the following line to disable bi-weekly auto-update checks.</div><div class="line"># DISABLE_AUTO_UPDATE=&quot;true&quot;</div><div class="line"></div><div class="line"># Uncomment the following line to change how often to auto-update (in days).</div><div class="line"># export UPDATE_ZSH_DAYS=13</div><div class="line"></div><div class="line"># Uncomment the following line to disable colors in ls.</div><div class="line">&quot;~/.zshrc&quot; 84L, 2798C</div></pre></td></tr></table></figure></p>
+<p>把<code>ZSH_THEME=&quot;robbyrussell&quot;</code>中的主题改成你想要的名字保存即可,但是必须是<code>.oh-my-zsh/themes</code>中有的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">➜  ~  cd .oh-my-zsh </div><div class="line">➜  .oh-my-zsh git:(master) ls</div><div class="line">MIT-LICENSE.txt custom          oh-my-zsh.sh    themes</div><div class="line">README.markdown lib             plugins         tools</div><div class="line">cache           log             templates</div><div class="line">➜  .oh-my-zsh git:(master) cd themes </div><div class="line">➜  themes git:(master) ls</div><div class="line">3den.zsh-theme                kafeitu.zsh-theme</div><div class="line">Soliah.zsh-theme              kardan.zsh-theme</div><div class="line">adben.zsh-theme               kennethreitz.zsh-theme</div><div class="line">af-magic.zsh-theme            kiwi.zsh-theme</div><div class="line">afowler.zsh-theme             kolo.zsh-theme</div><div class="line">agnoster.zsh-theme            kphoen.zsh-theme</div><div class="line">alanpeabody.zsh-theme         lambda.zsh-theme</div><div class="line">amuse.zsh-theme               linuxonly.zsh-theme</div><div class="line">apple.zsh-theme               lukerandall.zsh-theme</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>愿大家玩的高兴。^_^</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -215,9 +170,20 @@ apple.zsh-theme               lukerandall.zsh-theme
 </nav>
 
 	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/05/2015-08-05-快把你的bash换掉吧/" data-title="快把你的bash换掉吧" data-url="http://www.tengtai.tk/2015/08/05/2015-08-05-快把你的bash换掉吧/"></div>
+</section>
+
 
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是shell？"><span class="toc-number">1.</span> <span class="toc-text">什么是shell？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#oh-my-zsh"><span class="toc-number">2.</span> <span class="toc-text">oh-my-zsh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">3.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卸载"><span class="toc-number">4.</span> <span class="toc-text">卸载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主题"><span class="toc-number">5.</span> <span class="toc-text">主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">6.</span> <span class="toc-text">最后</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -386,6 +352,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
@@ -470,6 +438,18 @@ $(document).ready(function(){
 
 
 
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tengtai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
 
 
 
@@ -507,7 +487,7 @@ $(document).ready(function(){
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  hm.src = "//hm.baidu.com/hm.js?6b67bf9e170287a3bd896be4ecee8176";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();

@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://www.tengtai.tk/2015/08/03/2015-08-03-weakSelf与strongSelf/index.html">
 <meta property="og:site_name" content="光之晨曦">
 <meta property="og:description" content="weakSelf与strongSelf">
-<meta property="og:updated_time" content="2017-01-22T06:37:12.000Z">
+<meta property="og:updated_time" content="2017-02-28T14:36:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="weakSelf与strongSelf">
 <meta name="twitter:description" content="weakSelf与strongSelf">
@@ -93,32 +93,20 @@
 </header>
 	<div class="article-content">
 		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#weakSelf"><span class="toc-number">1.</span> <span class="toc-text">weakSelf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#strongSelf"><span class="toc-number">2.</span> <span class="toc-text">strongSelf</span></a></li></ol>
+		
+		</div>
+		
 		<p>对于weakSelf与strongSelf的一些理解。</p>
-<p>##weakSelf<br><code>weakSelf</code>的作用是防止<code>retain</code>环的出现而导致内存泄露，通过将一方设置为弱引用就可防止<code>retain</code>环的出现。比如说像代理，一般都是用的<code>weak</code>来进行声明的，这样就是防止循环应用它的写法大致有这几种：</p>
-<pre><code>// 1.AFNetworking的写法
-__weak __typeof(&amp;*self) weakSelf = self;
-// 2.
-__weak __typeof(self) weakSelf = self;
-// 3.
-__weak TTViewController *weakSelf = self;
-// 4.
-__weak id weakSelf = self;    
-</code></pre><p>上述的四种写法在现有的版本都是正确的，可以随意使用。</p>
-<p>##strongSelf<br><code>strongSelf</code>就是强引用的<code>self</code>，使用该关键字声明后可以保证在使用时不会被销毁掉，来看一下下面的代码：</p>
-<pre><code>// 弱引用防止retain环
-__weak __typeof(self)weakSelf = self;
-AFNetworkReachabilityStatusBlock callback = ^(AFNetworkReachabilityStatus status) {
-    // 强引用防止使用时被销毁掉
-    __strong __typeof(weakSelf)strongSelf = weakSelf;
-    strongSelf.networkReachabilityStatus = status;
-    if (strongSelf.networkReachabilityStatusBlock) {
-        strongSelf.networkReachabilityStatusBlock(status);
-    }
-};
-</code></pre><p>上面是开源网络框架<code>AFNetworking</code>的一段源代码，在处理网络请求时，因为网络请求的延时性，异步性很可能我们的<code>self</code>已经被销毁了，但是我们还需要请求继续执行下去，那么我们就不能让<code>self</code>被销毁掉，<code>strongSelf</code>正是来解决这一问题的，它保证了<code>self</code>不会在<code>block</code>执行时被销毁。</p>
-<p><code>strongSelf</code>的一般写法：</p>
-<pre><code>__strong __typeof(weakSelf)strongSelf = weakSelf;
-</code></pre>  
+<h2 id="weakSelf"><a href="#weakSelf" class="headerlink" title="weakSelf"></a>weakSelf</h2><p><code>weakSelf</code>的作用是防止<code>retain</code>环的出现而导致内存泄露，通过将一方设置为弱引用就可防止<code>retain</code>环的出现。比如说像代理，一般都是用的<code>weak</code>来进行声明的，这样就是防止循环应用它的写法大致有这几种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 1.AFNetworking的写法</div><div class="line">__weak __typeof(&amp;*self) weakSelf = self;</div><div class="line">// 2.</div><div class="line">__weak __typeof(self) weakSelf = self;</div><div class="line">// 3.</div><div class="line">__weak TTViewController *weakSelf = self;</div><div class="line">// 4.</div><div class="line">__weak id weakSelf = self;</div></pre></td></tr></table></figure></p>
+<p>上述的四种写法在现有的版本都是正确的，可以随意使用。</p>
+<h2 id="strongSelf"><a href="#strongSelf" class="headerlink" title="strongSelf"></a>strongSelf</h2><p><code>strongSelf</code>就是强引用的<code>self</code>，使用该关键字声明后可以保证在使用时不会被销毁掉，来看一下下面的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 弱引用防止retain环</div><div class="line">__weak __typeof(self)weakSelf = self;</div><div class="line">AFNetworkReachabilityStatusBlock callback = ^(AFNetworkReachabilityStatus status) &#123;</div><div class="line">// 强引用防止使用时被销毁掉</div><div class="line">   __strong __typeof(weakSelf)strongSelf = weakSelf;</div><div class="line">   strongSelf.networkReachabilityStatus = status;</div><div class="line">   if (strongSelf.networkReachabilityStatusBlock) &#123;</div><div class="line">       strongSelf.networkReachabilityStatusBlock(status);</div><div class="line">   &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>上面是开源网络框架<code>AFNetworking</code>的一段源代码，在处理网络请求时，因为网络请求的延时性，异步性很可能我们的<code>self</code>已经被销毁了，但是我们还需要请求继续执行下去，那么我们就不能让<code>self</code>被销毁掉，<code>strongSelf</code>正是来解决这一问题的，它保证了<code>self</code>不会在<code>block</code>执行时被销毁。</p>
+<p><code>strongSelf</code>的一般写法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">__strong __typeof(weakSelf)strongSelf = weakSelf;</div></pre></td></tr></table></figure></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -173,9 +161,20 @@ AFNetworkReachabilityStatusBlock callback = ^(AFNetworkReachabilityStatus status
 </nav>
 
 	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/03/2015-08-03-weakSelf与strongSelf/" data-title="weakSelf与strongSelf" data-url="http://www.tengtai.tk/2015/08/03/2015-08-03-weakSelf与strongSelf/"></div>
+</section>
+
 
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#weakSelf"><span class="toc-number">1.</span> <span class="toc-text">weakSelf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#strongSelf"><span class="toc-number">2.</span> <span class="toc-text">strongSelf</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -344,6 +343,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
@@ -428,6 +429,18 @@ $(document).ready(function(){
 
 
 
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tengtai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
 
 
 
@@ -465,7 +478,7 @@ $(document).ready(function(){
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  hm.src = "//hm.baidu.com/hm.js?6b67bf9e170287a3bd896be4ecee8176";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();

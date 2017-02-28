@@ -64,6 +64,8 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: jacman
+stylus:
+  compress: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -71,4 +73,4 @@ deploy:
   type: git
   repo: 
       github: https://github.com/cuitengtai/cuitengtai.github.io.git,master
-      # gitcafe: https://gitcafe.com/cuitengtai/cuitengtai.git,gitcafe-pages
+      gitcafe: https://coding.net/u/cuitengtai/p/cuitengtai/git,master
