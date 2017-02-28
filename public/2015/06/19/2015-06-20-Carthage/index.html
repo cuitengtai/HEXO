@@ -1,0 +1,536 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Cocoa新的依赖工具:Carthage | 光之晨曦</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="tengtai">
+    
+
+    <meta name="keywords" content="Carthage">
+    <meta name="description" content="Cocoa新的依赖工具:Carthage">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocoa新的依赖工具:Carthage">
+<meta property="og:url" content="http://www.tengtai.tk/2015/06/19/2015-06-20-Carthage/index.html">
+<meta property="og:site_name" content="光之晨曦">
+<meta property="og:description" content="Cocoa新的依赖工具:Carthage">
+<meta property="og:updated_time" content="2017-01-22T06:37:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocoa新的依赖工具:Carthage">
+<meta name="twitter:description" content="Cocoa新的依赖工具:Carthage">
+
+    
+    <link rel="alternative" href="/atom.xml" title="光之晨曦" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="光之晨曦" title="光之晨曦"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="光之晨曦">光之晨曦</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:www.tengtai.tk">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/06/19/2015-06-20-Carthage/" title="Cocoa新的依赖工具:Carthage" itemprop="url">Cocoa新的依赖工具:Carthage</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="tengtai" target="_blank" itemprop="author">tengtai</a>
+		
+  <p class="article-time">
+    <time datetime="2015-06-18T16:00:00.000Z" itemprop="datePublished"> Published 2015-06-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<p>谈到iOS的管理第三方类库的依赖工具，大家可能会先想到<a href="https://github.com/cocoapods/cocoapods" target="_blank" rel="external">CocoaPods</a>，<code>CocoaPods</code>支持丰富的第三方库，文档等，是iOS开发者有力的开发工具，但是其优缺点非常的明显。</p>
+<p>优点：</p>
+<ul>
+<li>支持丰富的第三方类库，文档</li>
+<li>有一大批开发者维护，稳定性较好</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>改变项目文件结构，对项目具有较强侵入性</li>
+<li>依赖于Xcode workspace文件</li>
+</ul>
+<p>那么就来说说我们今天的主角<a href="https://github.com/Carthage/Carthage" target="_blank" rel="external">Carthage</a>,它也是一款iOS第三方类库的依赖工具，它的原理是使用<code>Xcodebuild</code>编译框架的二进制文件，最终生成<code>.framework</code>静态库。</p>
+<p>优点：</p>
+<ul>
+<li>使用灵活，对项目无侵入性</li>
+<li>直接导入生成的<code>.framework</code>文件，简单方便</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>维护的开发者较少，目前还不太稳定</li>
+<li>支持的类库也没有<code>CocoaPods</code>那么多</li>
+<li><code>Carthage</code> 是由 <code>Swift</code> 语言写的，只支持动态框架，只支持 iOS8+</li>
+</ul>
+<p>其实个人还是比较喜欢<code>Carthage</code>,因为它很灵活，对项目的侵入性不大，相信<code>Carthage</code>以后会更加的稳定、全面，那么替代<code>CocoaPods</code>也将是指日可待。</p>
+<p>##安装</p>
+<p>推荐使用<code>Homebrew</code>进行安装，简单方便，易于维护：</p>
+<p>安装前最好先 update 一下：</p>
+<pre><code>brew update
+</code></pre><p>然后再安装：</p>
+<pre><code>brew install carthage
+</code></pre><p>当然，你也可以从<code>Github</code>的最新release中找到，按照引导一步步安装即可。</p>
+<p>##简介<br>Carthage 的大致工作流程如下：</p>
+<ul>
+<li>创建一个<code>Cartfile</code>文件，写好你要哪些依赖库</li>
+<li>执行 <code>carthage update</code> 命令下载源代码并自动编译为 <code>.framework</code></li>
+<li>把编译后的<code>.framework</code>直接拖到项目中即可，或者是在<code>Linked FrameWorks and Libraries</code>中添加</li>
+</ul>
+<p>执行<code>carthage update</code>命令后，项目目录大致如下：</p>
+<pre><code>Cartfile
+Cartfile.resolved
+Carthage
+       - Build
+        - iOS
+              - xxxx.framework
+        - Mac
+            - xxxx.framework
+    - Checkouts
+        - xxxx
+        - ...
+xxx.xcodeproj
+...
+</code></pre><ul>
+<li><code>Cartfile</code>文件用来标注你需要哪些依赖库，对应版本或者<code>Git</code>分支 (需要提交到<code>Git</code>)</li>
+<li><code>Cartfile.resolved</code>文件用来跟踪项目当前所用的依赖版本号，为了保持多端开发一致 (需要提交到<code>Git</code>)</li>
+<li><code>Carthage</code>文件夹用来存放依赖库的源文件和编译后的文件 (不需要提交到<code>Git</code>)</li>
+</ul>
+<p>##使用<br>在项目的根目录创建<code>Cartfile</code>文件，类似于<code>CocoaPods</code>的<code>Podfile</code>文件：</p>
+<pre><code>touch Cartfile
+</code></pre><p>编辑<code>Carthage</code>文件，添加所需依赖库：</p>
+<pre><code>vi Cartfile
+</code></pre><p>例如我要添加<code>SwiftyJSON</code>，只需在<code>Carthage</code>文件中加入</p>
+<pre><code>github &quot;SwiftyJSON/SwiftyJSON&quot; 
+</code></pre><p>然后保存，执行<code>update</code>即可导入最新版本的<code>SwiftyJSON</code></p>
+<pre><code>carthage update
+</code></pre><p>当然，如果你需要导入指定版本，可以参照<a href="https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile" target="_blank" rel="external">官方说明</a>，对<code>Carthage</code>文件进行修改。</p>
+<p>最后，将<code>Carthage/Build/iOS/SwiftyJSON.framework</code>导入项目即可使用。</p>
+<p>##问题<br>按照上面的步骤进行<code>update</code>，可能不会生成<code>SwiftyJSON.framework</code>，这也是我遇到的一个蛋疼的问题，其他的第三方库：比如<code>Alamofire</code>，都是没有问题的，我的猜测应该是<code>SwiftyJSON</code>的问题，下面是解决方法：</p>
+<pre><code>进入Carthage/Checkouts/SwiftyJSON目录内，将Example.xcodeproj文件拖入Example文件夹中
+</code></pre><p>其实你只需将<code>Example.xcodeproj</code>文件拖入<code>Carthage/Checkouts/SwiftyJSON</code>的子目录当中去，随便一个子目录都行，因为<code>Example</code>文件夹中放的是<code>SwiftyJSON</code>的<code>demo</code>，所以还是放入<code>Example</code>中比较好。</p>
+<p>##结尾</p>
+<p>希望<code>Carthage</code>可以走的越来越远，让开发更加的高效，便捷。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/iOS工具/">iOS工具</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.tengtai.tk/2015/06/19/2015-06-20-Carthage/" data-title="Cocoa新的依赖工具:Carthage | 光之晨曦" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/06/20/2015-06-20-UIColor进制转换/" title=" UIColor与十六进制字符串互转（整理）">
+  <strong>上一篇：</strong><br/>
+  <span>
+   UIColor与十六进制字符串互转（整理）</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac工具/" title="Mac工具">Mac工具<sup>1</sup></a></li>
+		  
+		
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>8</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/iOS/" title="iOS">iOS<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/iOS工具/" title="iOS工具">iOS工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac工具/" title="Mac工具">Mac工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
+			
+		
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 热爱移动开发，希望做一些有意思的事情。 <br/>
+			路漫漫其修远兮，吾将上下为求索。</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2211006995" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="tengtai">tengtai</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
