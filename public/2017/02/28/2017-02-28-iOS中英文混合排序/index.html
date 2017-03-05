@@ -4,28 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>UITableView的分割线 | 光之晨曦</title>
+    <title>iOS中英文混合排序 | 光之晨曦</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="tengtai">
     
 
-    <meta name="keywords" content="Cell的分割线">
-    <meta name="description" content="UITableView的分割线">
+    <meta name="keywords" content="iOS中英文混合排序">
+    <meta name="description" content="iOS中英文混合排序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UITableView的分割线">
-<meta property="og:url" content="http://www.tengtai.tk/2015/08/26/2015-08-26-UITableView的分割线/index.html">
+<meta property="og:title" content="iOS中英文混合排序">
+<meta property="og:url" content="http://www.tengtai.tk/2017/02/28/2017-02-28-iOS中英文混合排序/index.html">
 <meta property="og:site_name" content="光之晨曦">
-<meta property="og:description" content="UITableView的分割线">
-<meta property="og:image" content="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826201621072.png?375x689_130">
-<meta property="og:image" content="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826201715025.png?375x689_130">
-<meta property="og:image" content="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826202654013.png?239x59_130">
-<meta property="og:image" content="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826203706040.png?710x429_130">
-<meta property="og:updated_time" content="2017-03-05T04:16:44.000Z">
+<meta property="og:description" content="iOS中英文混合排序">
+<meta property="og:updated_time" content="2017-03-05T04:15:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UITableView的分割线">
-<meta name="twitter:description" content="UITableView的分割线">
-<meta name="twitter:image" content="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826201621072.png?375x689_130">
+<meta name="twitter:title" content="iOS中英文混合排序">
+<meta name="twitter:description" content="iOS中英文混合排序">
 
     
     <link rel="alternative" href="/atom.xml" title="光之晨曦" type="application/atom+xml">
@@ -85,14 +80,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/26/2015-08-26-UITableView的分割线/" title="UITableView的分割线" itemprop="url">UITableView的分割线</a>
+      <a href="/2017/02/28/2017-02-28-iOS中英文混合排序/" title="iOS中英文混合排序" itemprop="url">iOS中英文混合排序</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="tengtai" target="_blank" itemprop="author">tengtai</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-25T16:00:00.000Z" itemprop="datePublished"> Published 2015-08-26</time>
+    <time datetime="2017-02-27T16:00:00.000Z" itemprop="datePublished"> Published 2017-02-28</time>
     
   </p>
 </header>
@@ -101,36 +96,22 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先"><span class="toc-number">1.</span> <span class="toc-text">首先</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Do-It"><span class="toc-number">2.</span> <span class="toc-text">Do It</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在iOS7"><span class="toc-number">2.1.</span> <span class="toc-text">在iOS7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在iOS8"><span class="toc-number">2.2.</span> <span class="toc-text">在iOS8</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#牛刀小试"><span class="toc-number">1.</span> <span class="toc-text">牛刀小试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发现问题"><span class="toc-number">2.</span> <span class="toc-text">发现问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#渐入佳境"><span class="toc-number">3.</span> <span class="toc-text">渐入佳境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#守得云开见月明"><span class="toc-number">4.</span> <span class="toc-text">守得云开见月明</span></a></li></ol>
 		
 		</div>
 		
-		<p>在iOS7与iOS8中的UITableView的分割线的一些设置问题。<br><a id="more"></a></p>
-<h2 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h2><p>在iOS中UITableView的分割线默认是左边距离边距15像素，但是有时我们需要它左对齐。<br>这是正常的分割线：</p>
-<p><img src="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826201621072.png?375x689_130" alt="正常"></p>
-<p>我们的需求：</p>
-<p><img src="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826201715025.png?375x689_130" alt="需求"></p>
-<h2 id="Do-It"><a href="#Do-It" class="headerlink" title="Do It"></a>Do It</h2><h3 id="在iOS7"><a href="#在iOS7" class="headerlink" title="在iOS7"></a>在iOS7</h3><p>在iOS7上，我们有多种方式来解决这个问题。</p>
-<ul>
-<li><p>使用代码的方式</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">self.tableView.separatorInset = UIEdgeInsetsZero;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li>如果使用了xib或者是SB</li>
-</ul>
-<p><img src="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826202654013.png?239x59_130" alt="xib-sb"></p>
-<ul>
-<li>或者直接把分割线样式设置为<code>UITableViewCellSeparatorStyleNone</code>,然后自己在<code>cell</code>的底部添加一个高度为<code>1</code>的<code>UIView</code></li>
-</ul>
-<h3 id="在iOS8"><a href="#在iOS8" class="headerlink" title="在iOS8"></a>在iOS8</h3><p>不幸的是在iOS8上，上述的两种方法都不行，为什么呢？其实是<code>layoutMargins</code>这个属性在作怪，这是iOS8新添加的一个属性，下面是官方的介绍：</p>
-<p><img src="http://img17.poco.cn/mypoco/myphoto/20150826/20/17832875620150826203706040.png?710x429_130" alt="layoutMargins"></p>
-<p>那么，我们就需要使用下面这段代码了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath</div><div class="line">&#123;</div><div class="line">    </div><div class="line">    if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) &#123;</div><div class="line">       	[tableView setSeparatorInset:UIEdgeInsetsZero];</div><div class="line">    &#125;</div><div class="line">        </div><div class="line">    if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) &#123;</div><div class="line">      	 [tableView setLayoutMargins:UIEdgeInsetsZero];</div><div class="line">    	&#125;</div><div class="line">        </div><div class="line">    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) &#123;</div><div class="line">       	[cell setLayoutMargins:UIEdgeInsetsZero];</div><div class="line">    	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>layoutMargins</code>在子控件与父控件布局中起了决定性的作用。</p>
-<p>但是这一段代码会在每个cell绘制时候频繁调用，这也就意味着性能的下降，所以还有一种方法来实现：</p>
-<pre><code>self.tableView.separatorInset = UIEdgeInsetsZero;
-self.tableView.layoutMargins = UIEdgeInsetsZero;
-</code></pre><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>愿大家玩的高兴。^_^</p>
+		<p>听起来中英文排序貌似很简单，直接使用数组或者字符串相对应的方法不就行了嘛，但是我真正去做的时候确实发现了一些问题。<br><a id="more"></a></p>
+<h2 id="牛刀小试"><a href="#牛刀小试" class="headerlink" title="牛刀小试"></a>牛刀小试</h2><p>首先我想到的是用这种方法，直接看代码吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">NSArray *array = @[@&quot;俺家&quot;, @&quot;阿尔卑斯&quot;, @&quot;上海&quot;, @&quot;AJ&quot;, @&quot;北京&quot;];</div><div class="line">NSArray *sortArray = [array sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) &#123;</div><div class="line">        return [obj1 compare:obj2 options:NSCaseInsensitiveSearch];</div><div class="line">     &#125;];</div></pre></td></tr></table></figure>
+<p>然后运行结果并没有达到预期的目的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">结果：</div><div class="line">AJ</div><div class="line">上海</div><div class="line">俺家</div><div class="line">北京</div><div class="line">阿尔卑斯</div></pre></td></tr></table></figure>
+<h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><p>为什么会这样呢？后来查资料发现，汉字如果使用这种方式的排序，并不是按照首字母进行排序的，也就是说这个方法用来排列纯字母的是没问题的，汉字是不行的。看了compare方法的介绍，我发现了一条重要的信息。</p>
+<p><em>When working with text that’s presented to the user, use the localizedStandardCompare: instead, or use the compare:options:range:locale: method, passing the user’s locale.</em></p>
+<p>这段话大概意思是如果用户设置了手机的语言，则需要使用<code>localizedStandardCompare</code>，好吧，那就换种办法试一试。</p>
+<h2 id="渐入佳境"><a href="#渐入佳境" class="headerlink" title="渐入佳境"></a>渐入佳境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">NSArray *array = @[@&quot;俺家&quot;, @&quot;阿尔卑斯&quot;, @&quot;上海&quot;, @&quot;AJ&quot;, @&quot;北京&quot;];</div><div class="line">NSArray *sortArray = [array sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) &#123;</div><div class="line">   return [obj1 localizedCompare:obj2];</div><div class="line">&#125;];</div><div class="line">for (NSString *str in sortArray) &#123;</div><div class="line">   NSLog(@&quot;%@\n&quot;, str);</div><div class="line">&#125;</div><div class="line"></div><div class="line">结果：</div><div class="line">阿尔卑斯</div><div class="line">俺家</div><div class="line">北京</div><div class="line">上海</div><div class="line">AJ</div></pre></td></tr></table></figure>
+<p>虽然这次排序依然是不正确的，但是可以看到其中的汉字已经正确了，说明这个方法并不能兼容汉字和字母的排序。那么就只能通过取汉字拼音的首字母去比较了，这样才能和其他字母进行比较。后来我找到了这种解决办法。</p>
+<h2 id="守得云开见月明"><a href="#守得云开见月明" class="headerlink" title="守得云开见月明"></a>守得云开见月明</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">NSInteger sortObjects(id obj1, id obj2,void *context)</div><div class="line">&#123;</div><div class="line">    NSMutableString * str1 = [[NSMutableString alloc] initWithString:obj1];</div><div class="line">    if (CFStringTransform((__bridge CFMutableStringRef)str1, 0, kCFStringTransformMandarinLatin, NO)) &#123;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    NSMutableString * str2 = [[NSMutableString alloc] initWithString:obj2];</div><div class="line">    if (CFStringTransform((__bridge CFMutableStringRef)str2, 0, kCFStringTransformMandarinLatin, NO)) &#123;</div><div class="line">    &#125;</div><div class="line">    return [str1 localizedCompare:str2];</div><div class="line">&#125;</div><div class="line"></div><div class="line">NSArray *array = @[@&quot;俺家&quot;, @&quot;阿尔卑斯&quot;, @&quot;上海&quot;, @&quot;AJ&quot;, @&quot;北京&quot;];</div><div class="line">NSArray *sortArray = [array sortedArrayUsingFunction:sortObjects context:NULL];</div><div class="line">for (NSString *str in sortArray) &#123;</div><div class="line">   NSLog(@&quot;%@\n&quot;, str);</div><div class="line">&#125;</div><div class="line"></div><div class="line">结果：</div><div class="line">阿尔卑斯</div><div class="line">AJ</div><div class="line">俺家</div><div class="line">北京</div><div class="line">上海</div></pre></td></tr></table></figure>
+<p>这次终于是正确了，上面的sortObjects函数是将汉字转成拼音，字母不做任何处理，这样再运用第二种方法的比较就可以了。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -153,7 +134,7 @@ self.tableView.layoutMargins = UIEdgeInsetsZero;
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://www.tengtai.tk/2015/08/26/2015-08-26-UITableView的分割线/" data-title="UITableView的分割线 | 光之晨曦" data-tsina="null" class="share clearfix">
+	  <div data-url="http://www.tengtai.tk/2017/02/28/2017-02-28-iOS中英文混合排序/" data-title="iOS中英文混合排序 | 光之晨曦" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -167,18 +148,18 @@ self.tableView.layoutMargins = UIEdgeInsetsZero;
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/01/22/2017-01-22-Effective Objective-C 2.0：编写高质量iOS与OS X代码的52个有效方法-/" title="《Effective Objective-C 2.0：编写高质量iOS与OS X代码的52个有效方法》笔记">
+ <a href="/2017/03/04/2017-03-04-iOS开发神器Reveal使用指南/" title="iOS开发神器Reveal使用指南">
   <strong>上一篇：</strong><br/>
   <span>
-  《Effective Objective-C 2.0：编写高质量iOS与OS X代码的52个有效方法》笔记</span>
+  iOS开发神器Reveal使用指南</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/08/12/2015-08-12-使用SKPSMTPMessage发送邮件/"  title="使用SKPSMTPMessage发送邮件">
+<a href="/2017/01/23/2017-01-23-快速了解JavaScript中的函数/"  title="快速了解JavaScript中的函数">
  <strong>下一篇：</strong><br/> 
- <span>使用SKPSMTPMessage发送邮件
+ <span>快速了解JavaScript中的函数
 </span>
 </a>
 </div>
@@ -187,7 +168,7 @@ self.tableView.layoutMargins = UIEdgeInsetsZero;
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/08/26/2015-08-26-UITableView的分割线/" data-title="UITableView的分割线" data-url="http://www.tengtai.tk/2015/08/26/2015-08-26-UITableView的分割线/"></div>
+	<div class="ds-thread" data-thread-key="2017/02/28/2017-02-28-iOS中英文混合排序/" data-title="iOS中英文混合排序" data-url="http://www.tengtai.tk/2017/02/28/2017-02-28-iOS中英文混合排序/"></div>
 </section>
 
 
@@ -197,7 +178,7 @@ self.tableView.layoutMargins = UIEdgeInsetsZero;
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先"><span class="toc-number">1.</span> <span class="toc-text">首先</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Do-It"><span class="toc-number">2.</span> <span class="toc-text">Do It</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在iOS7"><span class="toc-number">2.1.</span> <span class="toc-text">在iOS7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在iOS8"><span class="toc-number">2.2.</span> <span class="toc-text">在iOS8</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#牛刀小试"><span class="toc-number">1.</span> <span class="toc-text">牛刀小试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发现问题"><span class="toc-number">2.</span> <span class="toc-text">发现问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#渐入佳境"><span class="toc-number">3.</span> <span class="toc-text">渐入佳境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#守得云开见月明"><span class="toc-number">4.</span> <span class="toc-text">守得云开见月明</span></a></li></ol>
  
   </div>
 

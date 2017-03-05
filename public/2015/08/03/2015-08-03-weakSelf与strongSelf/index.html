@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://www.tengtai.tk/2015/08/03/2015-08-03-weakSelf与strongSelf/index.html">
 <meta property="og:site_name" content="光之晨曦">
 <meta property="og:description" content="weakSelf与strongSelf">
-<meta property="og:updated_time" content="2017-02-28T14:36:40.000Z">
+<meta property="og:updated_time" content="2017-03-05T04:17:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="weakSelf与strongSelf">
 <meta name="twitter:description" content="weakSelf与strongSelf">
@@ -46,7 +46,7 @@
 			
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="光之晨曦">光之晨曦</a></h1>
-				<h2 class="blog-motto"></h2>
+				<h2 class="blog-motto">代码是艺术品，需要慢慢打磨。</h2>
 			</div>
 			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
@@ -100,7 +100,7 @@
 		
 		</div>
 		
-		<p>对于weakSelf与strongSelf的一些理解。</p>
+		<p>对于weakSelf与strongSelf的一些理解。<br><a id="more"></a></p>
 <h2 id="weakSelf"><a href="#weakSelf" class="headerlink" title="weakSelf"></a>weakSelf</h2><p><code>weakSelf</code>的作用是防止<code>retain</code>环的出现而导致内存泄露，通过将一方设置为弱引用就可防止<code>retain</code>环的出现。比如说像代理，一般都是用的<code>weak</code>来进行声明的，这样就是防止循环应用它的写法大致有这几种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 1.AFNetworking的写法</div><div class="line">__weak __typeof(&amp;*self) weakSelf = self;</div><div class="line">// 2.</div><div class="line">__weak __typeof(self) weakSelf = self;</div><div class="line">// 3.</div><div class="line">__weak TTViewController *weakSelf = self;</div><div class="line">// 4.</div><div class="line">__weak id weakSelf = self;</div></pre></td></tr></table></figure></p>
 <p>上述的四种写法在现有的版本都是正确的，可以随意使用。</p>
 <h2 id="strongSelf"><a href="#strongSelf" class="headerlink" title="strongSelf"></a>strongSelf</h2><p><code>strongSelf</code>就是强引用的<code>self</code>，使用该关键字声明后可以保证在使用时不会被销毁掉，来看一下下面的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 弱引用防止retain环</div><div class="line">__weak __typeof(self)weakSelf = self;</div><div class="line">AFNetworkReachabilityStatusBlock callback = ^(AFNetworkReachabilityStatus status) &#123;</div><div class="line">// 强引用防止使用时被销毁掉</div><div class="line">   __strong __typeof(weakSelf)strongSelf = weakSelf;</div><div class="line">   strongSelf.networkReachabilityStatus = status;</div><div class="line">   if (strongSelf.networkReachabilityStatusBlock) &#123;</div><div class="line">       strongSelf.networkReachabilityStatusBlock(status);</div><div class="line">   &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
@@ -142,18 +142,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/08/05/2015-08-05-快把你的bash换掉吧/" title="快把你的bash换掉吧">
+ <a href="/2015/08/03/2015-08-03-成员变量与属性/" title="成员变量与属性">
   <strong>上一篇：</strong><br/>
   <span>
-  快把你的bash换掉吧</span>
+  成员变量与属性</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/08/03/2015-08-03-成员变量与属性/"  title="成员变量与属性">
+<a href="/2015/06/20/2015-06-20-Cell拖动/"  title="iOS自定义长按手势，随意拖动Cell">
  <strong>下一篇：</strong><br/> 
- <span>成员变量与属性
+ <span>iOS自定义长按手势，随意拖动Cell
 </span>
 </a>
 </div>
@@ -181,6 +181,13 @@
 <aside class="clearfix">
 
   
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="cuitengtai" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
 
 
   
@@ -193,13 +200,11 @@
 		  
 		
 		  
-			<li><a href="/categories/Mac工具/" title="Mac工具">Mac工具<sup>1</sup></a></li>
+			<li><a href="/categories/Mac工具/" title="Mac工具">Mac工具<sup>2</sup></a></li>
 		  
 		
 		  
-		
-		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>8</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>9</sup></a></li>
 		  
 		
 		</ul>
@@ -212,15 +217,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/iOS/" title="iOS">iOS<sup>6</sup></a></li>
+				<li><a href="/tags/iOS/" title="iOS">iOS<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac工具/" title="Mac工具">Mac工具<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/iOS工具/" title="iOS工具">iOS工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mac工具/" title="Mac工具">Mac工具<sup>1</sup></a></li>
 			
 		
 			
@@ -229,8 +234,6 @@
 		
 			
 				<li><a href="/tags/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
-			
-		
 			
 		
 		</ul>
@@ -270,13 +273,15 @@
 	
 	<section class="info">
 		<p> 热爱移动开发，希望做一些有意思的事情。 <br/>
-			路漫漫其修远兮，吾将上下为求索。</p>
+			路漫漫其修远兮，吾将上下而求索。</p>
 	</section>
 	 
 	<div class="social-font" class="clearfix">
 		
 		<a href="http://weibo.com/2211006995" target="_blank" class="icon-weibo" title="微博"></a>
 		
+		
+		<a href="https://github.com/cuitengtai" target="_blank" class="icon-github" title="github"></a>
 		
 		
 		

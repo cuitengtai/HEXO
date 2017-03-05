@@ -10,6 +10,7 @@ publish: true
 description: UITableView的分割线
 ---
 在iOS7与iOS8中的UITableView的分割线的一些设置问题。
+<!-- more -->
 
 ## 首先
 在iOS中UITableView的分割线默认是左边距离边距15像素，但是有时我们需要它左对齐。

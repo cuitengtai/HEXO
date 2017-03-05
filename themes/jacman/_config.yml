@@ -44,7 +44,7 @@ highlight_theme: night
 
 #### index post is expanding or not 
 index:
-  expand: false           ## default is unexpanding,so you can only see the short description of each post.
+  expand: true           ## default is unexpanding,so you can only see the short description of each post.
   excerpt_link: Read More  
 
 close_aside: false  #close sidebar in post page if true
@@ -57,7 +57,7 @@ creative_commons: none
 #### Author information
 author:
   intro_line1:  "热爱移动开发，希望做一些有意思的事情。"    ## your introduction on the bottom of the page
-  intro_line2:  "路漫漫其修远兮，吾将上下为求索。"  ## the 2nd line
+  intro_line2:  "路漫漫其修远兮，吾将上下而求索。"  ## the 2nd line
   weibo: 2211006995     ## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895
   weibo_verifier: b3593ceb    ## e.g. b3593ceb Your weibo-show widget verifier ,if you use weibo-show it is needed.
   tsina:      ## e.g. 2176287895  Your weibo ID,It will be used in share button.
@@ -65,7 +65,7 @@ author:
   zhihu:      ## e.g. jark  for http://www.zhihu.com/people/jark
   email:      ## e.g. imjark@gmail.com
   twitter:    ## e.g. jarkwu for https://twitter.com/jarkwu
-  github:     ## e.g. wuchong for https://github.com/wuchong
+  github: cuitengtai     ## e.g. wuchong for https://github.com/wuchong
   facebook:   ## e.g. imjark for https://facebook.com/imjark
   linkedin:   ## e.g. wuchong1014 for https://www.linkedin.com/in/wuchong1014
   google_plus:    ## e.g. "111190881341800841449" for https://plus.google.com/u/0/111190881341800841449, the "" is needed!

@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://www.tengtai.tk/2017/01/22/2017-01-22-Effective Objective-C 2.0：编写高质量iOS与OS X代码的52个有效方法-/index.html">
 <meta property="og:site_name" content="光之晨曦">
 <meta property="og:description" content="编写高质量iOS与OS X代码的52个有效方法">
-<meta property="og:updated_time" content="2017-02-28T14:46:37.000Z">
+<meta property="og:updated_time" content="2017-03-05T04:16:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Effective Objective-C 2.0：编写高质量iOS与OS X代码的52个有效方法》笔记">
 <meta name="twitter:description" content="编写高质量iOS与OS X代码的52个有效方法">
@@ -46,7 +46,7 @@
 			
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="光之晨曦">光之晨曦</a></h1>
-				<h2 class="blog-motto"></h2>
+				<h2 class="blog-motto">代码是艺术品，需要慢慢打磨。</h2>
 			</div>
 			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
@@ -100,7 +100,7 @@
 		
 		</div>
 		
-		<p>写出优雅高效的代码是每个程序员的最高追求，最近静下心里细细的品味一下一些提高代码质量的技巧，与君共勉之。</p>
+		<p>写出优雅高效的代码是每个程序员的最高追求，最近静下心里细细的品味一下一些提高代码质量的技巧，与君共勉之。<br><a id="more"></a></p>
 <h2 id="熟悉Objective-C"><a href="#熟悉Objective-C" class="headerlink" title="熟悉Objective-C"></a>熟悉Objective-C</h2><h3 id="了解Objective-C语言的起源"><a href="#了解Objective-C语言的起源" class="headerlink" title="了解Objective-C语言的起源"></a>了解Objective-C语言的起源</h3><p>1、区别于C++, Java等面向对象的语言，Objective-C在 运行中是“消息转发”而非“函数调用”，运行时所执行的代码由运行环境决定，而非编译器决定。<br>2、NSString *someString = @”The string”; someString指针变量被分配在“栈帧”中，@“The string”对象则被分配在“堆空间”中，分配在堆中的内存必须直接管理，而分配在栈上用于保存变量的内存则会在其“栈帧”自动弹出时清理。在Objective-C中，内存管理指的是堆上的这部分内存。</p>
 <h3 id="在类的头文件中尽量少引用其他头文件"><a href="#在类的头文件中尽量少引用其他头文件" class="headerlink" title="在类的头文件中尽量少引用其他头文件"></a>在类的头文件中尽量少引用其他头文件</h3><p>1、不要为了省事，直接在头文件中引用其他类的头文件，将头文件引入的时间尽量延后，可以用”@class”来声明类，减少编译器的负担。<br>2、如果两个类互相引入对方的头文件会造成“循环引用”，无法正常编译。经测试：只互相引用头文件可正常编译，但是如果在类里面使用对方头文件变量时，就无法编译通过。<br>3、某个类如果要实现某个协议，尽量把协议的声明写在“类扩展”，即”.m”文件的”@interface xxx<xxxdelegate> @end”,如果实在不行，那就最好吧协议单独放在一个头文件中，然后将其引入。</xxxdelegate></p>
 <h3 id="多用字面量语法，少用与之等价的方法"><a href="#多用字面量语法，少用与之等价的方法" class="headerlink" title="多用字面量语法，少用与之等价的方法"></a>多用字面量语法，少用与之等价的方法</h3><p>好处:<br>1、书写简洁，便于阅读。<br>2、使用字面量数组时可以更快的抛出异常，更加安全。<br>局限性:<br>1、自定义创建子类的实例，需要采取“非字面量语法”。</p>
@@ -248,6 +248,13 @@
 <aside class="clearfix">
 
   
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="cuitengtai" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
 
 
   
@@ -260,13 +267,11 @@
 		  
 		
 		  
-			<li><a href="/categories/Mac工具/" title="Mac工具">Mac工具<sup>1</sup></a></li>
+			<li><a href="/categories/Mac工具/" title="Mac工具">Mac工具<sup>2</sup></a></li>
 		  
 		
 		  
-		
-		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>8</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>9</sup></a></li>
 		  
 		
 		</ul>
@@ -279,15 +284,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/iOS/" title="iOS">iOS<sup>6</sup></a></li>
+				<li><a href="/tags/iOS/" title="iOS">iOS<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac工具/" title="Mac工具">Mac工具<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/iOS工具/" title="iOS工具">iOS工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mac工具/" title="Mac工具">Mac工具<sup>1</sup></a></li>
 			
 		
 			
@@ -296,8 +301,6 @@
 		
 			
 				<li><a href="/tags/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
-			
-		
 			
 		
 		</ul>
@@ -337,13 +340,15 @@
 	
 	<section class="info">
 		<p> 热爱移动开发，希望做一些有意思的事情。 <br/>
-			路漫漫其修远兮，吾将上下为求索。</p>
+			路漫漫其修远兮，吾将上下而求索。</p>
 	</section>
 	 
 	<div class="social-font" class="clearfix">
 		
 		<a href="http://weibo.com/2211006995" target="_blank" class="icon-weibo" title="微博"></a>
 		
+		
+		<a href="https://github.com/cuitengtai" target="_blank" class="icon-github" title="github"></a>
 		
 		
 		

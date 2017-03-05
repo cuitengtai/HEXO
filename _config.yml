@@ -4,7 +4,7 @@
 
 # Site
 title: 光之晨曦
-subtitle:
+subtitle: 代码是艺术品，需要慢慢打磨。
 description:
 author: tengtai
 language: zh-Hans 
@@ -72,5 +72,7 @@ stylus:
 deploy:
   type: git
   repo: 
+      # github: git@github.com:cuitengtai/cuitengtai.github.io.git,master
+      # coding: git@git.coding.net:cuitengtai/cuitengtai.git,master
       github: https://github.com/cuitengtai/cuitengtai.github.io.git,master
       gitcafe: https://coding.net/u/cuitengtai/p/cuitengtai/git,master

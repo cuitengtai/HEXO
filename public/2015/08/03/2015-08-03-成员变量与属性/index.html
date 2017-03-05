@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://www.tengtai.tk/2015/08/03/2015-08-03-成员变量与属性/index.html">
 <meta property="og:site_name" content="光之晨曦">
 <meta property="og:description" content="成员变量与属性">
-<meta property="og:updated_time" content="2017-02-28T14:31:42.000Z">
+<meta property="og:updated_time" content="2017-03-05T04:17:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="成员变量与属性">
 <meta name="twitter:description" content="成员变量与属性">
@@ -46,7 +46,7 @@
 			
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="光之晨曦">光之晨曦</a></h1>
-				<h2 class="blog-motto"></h2>
+				<h2 class="blog-motto">代码是艺术品，需要慢慢打磨。</h2>
 			</div>
 			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
@@ -100,7 +100,7 @@
 		
 		</div>
 		
-		<p>最近在公司的项目里面发现了很多类成员变量与属性同时出现，感觉很混乱，之前一直是在用属性<code>@property</code>声明变量，所以对两者之间的区别比较困惑，于是便仔细的探索了一番。</p>
+		<p>最近在公司的项目里面发现了很多类成员变量与属性同时出现，感觉很混乱，之前一直是在用属性<code>@property</code>声明变量，所以对两者之间的区别比较困惑，于是便仔细的探索了一番。<br><a id="more"></a></p>
 <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>先来看一看那些让人感觉乱糟糟的成员变量与属性共用的代码吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@interface SearchInfoView()&lt;UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,SearchCellDelegate&gt; </div><div class="line">&#123;</div><div class="line">    UIImageView *_backGroundImg;</div><div class="line">    NSMutableArray *_oldSearchArray; </div><div class="line">    UIButton *_rightBtn;</div><div class="line">&#125;</div><div class="line">@property(nonatomic, strong)UITableView *historyTableView;</div><div class="line">@property(nonatomic, assign)UIViewController *currentViewControll;</div><div class="line">@end</div></pre></td></tr></table></figure></p>
 <p>真的很乱，对于我来说真的是无法忍受，但是他们之间到底有何不同呢？</p>
 <h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>先来说一下属性<code>@property</code>，属性可以自己生成<code>getter</code>和<code>setter</code>方法，并生成一个待下划线的成员变量，当然你还可以通过<code>@synthesize</code>关键字将实例变量重命名。在ARC下对象的存在与否全看有没有强指针的引用，我们无需去考虑计数器了，配合一些如：<code>strong</code>, <code>weak</code>, <code>rassign</code>等关键字，我们不用再去太关心内存。</p>
@@ -142,18 +142,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/08/03/2015-08-03-weakSelf与strongSelf/" title="weakSelf与strongSelf">
+ <a href="/2015/08/05/2015-08-05-快把你的bash换掉吧/" title="快把你的bash换掉吧">
   <strong>上一篇：</strong><br/>
   <span>
-  weakSelf与strongSelf</span>
+  快把你的bash换掉吧</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/06/20/2015-06-20-Cell拖动/"  title="iOS自定义长按手势，随意拖动Cell">
+<a href="/2015/08/03/2015-08-03-weakSelf与strongSelf/"  title="weakSelf与strongSelf">
  <strong>下一篇：</strong><br/> 
- <span>iOS自定义长按手势，随意拖动Cell
+ <span>weakSelf与strongSelf
 </span>
 </a>
 </div>
@@ -181,6 +181,13 @@
 <aside class="clearfix">
 
   
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="cuitengtai" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
 
 
   
@@ -193,13 +200,11 @@
 		  
 		
 		  
-			<li><a href="/categories/Mac工具/" title="Mac工具">Mac工具<sup>1</sup></a></li>
+			<li><a href="/categories/Mac工具/" title="Mac工具">Mac工具<sup>2</sup></a></li>
 		  
 		
 		  
-		
-		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>8</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>9</sup></a></li>
 		  
 		
 		</ul>
@@ -212,15 +217,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/iOS/" title="iOS">iOS<sup>6</sup></a></li>
+				<li><a href="/tags/iOS/" title="iOS">iOS<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac工具/" title="Mac工具">Mac工具<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/iOS工具/" title="iOS工具">iOS工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mac工具/" title="Mac工具">Mac工具<sup>1</sup></a></li>
 			
 		
 			
@@ -229,8 +234,6 @@
 		
 			
 				<li><a href="/tags/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
-			
-		
 			
 		
 		</ul>
@@ -270,13 +273,15 @@
 	
 	<section class="info">
 		<p> 热爱移动开发，希望做一些有意思的事情。 <br/>
-			路漫漫其修远兮，吾将上下为求索。</p>
+			路漫漫其修远兮，吾将上下而求索。</p>
 	</section>
 	 
 	<div class="social-font" class="clearfix">
 		
 		<a href="http://weibo.com/2211006995" target="_blank" class="icon-weibo" title="微博"></a>
 		
+		
+		<a href="https://github.com/cuitengtai" target="_blank" class="icon-github" title="github"></a>
 		
 		
 		

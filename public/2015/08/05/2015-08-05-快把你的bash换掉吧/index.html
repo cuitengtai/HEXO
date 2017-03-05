@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://www.tengtai.tk/2015/08/05/2015-08-05-快把你的bash换掉吧/index.html">
 <meta property="og:site_name" content="光之晨曦">
 <meta property="og:description" content="快把你的bash换掉吧">
-<meta property="og:updated_time" content="2017-02-28T14:34:52.000Z">
+<meta property="og:updated_time" content="2017-03-05T04:17:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快把你的bash换掉吧">
 <meta name="twitter:description" content="快把你的bash换掉吧">
@@ -46,7 +46,7 @@
 			
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="光之晨曦">光之晨曦</a></h1>
-				<h2 class="blog-motto"></h2>
+				<h2 class="blog-motto">代码是艺术品，需要慢慢打磨。</h2>
 			</div>
 			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
@@ -100,7 +100,7 @@
 		
 		</div>
 		
-		<p>对于经常使用Mac终端的人而言，需要牢记大量复杂的命令，而开源的<code>zsh</code>则帮助用户减少了大脑的负荷，增加了使用的便捷性，而且还有许多主题可以随意更换，用起来更加的爽了。所以，赶紧换掉那个陈旧的<code>bash</code>吧.</p>
+		<p>对于经常使用Mac终端的人而言，需要牢记大量复杂的命令，而开源的<code>zsh</code>则帮助用户减少了大脑的负荷，增加了使用的便捷性，而且还有许多主题可以随意更换，用起来更加的爽了。所以，赶紧换掉那个陈旧的<code>bash</code>吧.<br><a id="more"></a></p>
 <h2 id="什么是shell？"><a href="#什么是shell？" class="headerlink" title="什么是shell？"></a>什么是shell？</h2><p><code>shell</code>是Linux/Unix的一个外壳，你理解成衣服也行。它负责外界与内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。所以，工具用着不爽，当然就要更换一个效率更高的，功能更强大的，而<code>zsh</code>更是被誉为<code>终端的终结者</code>。</p>
 <p>想知道自己的电脑支持几种<code>shell</code>，可以用下面这个命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/shells</div></pre></td></tr></table></figure></p>
 <p>然后你会看见:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/bin/bash</div><div class="line">/bin/csh</div><div class="line">/bin/ksh</div><div class="line">/bin/sh</div><div class="line">/bin/tcsh</div><div class="line">/bin/zsh</div></pre></td></tr></table></figure></p>
@@ -160,9 +160,9 @@
 
 
 <div class="next">
-<a href="/2015/08/03/2015-08-03-weakSelf与strongSelf/"  title="weakSelf与strongSelf">
+<a href="/2015/08/03/2015-08-03-成员变量与属性/"  title="成员变量与属性">
  <strong>下一篇：</strong><br/> 
- <span>weakSelf与strongSelf
+ <span>成员变量与属性
 </span>
 </a>
 </div>
@@ -190,6 +190,13 @@
 <aside class="clearfix">
 
   
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="cuitengtai" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
 
 
   
@@ -202,13 +209,11 @@
 		  
 		
 		  
-			<li><a href="/categories/Mac工具/" title="Mac工具">Mac工具<sup>1</sup></a></li>
+			<li><a href="/categories/Mac工具/" title="Mac工具">Mac工具<sup>2</sup></a></li>
 		  
 		
 		  
-		
-		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>8</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>9</sup></a></li>
 		  
 		
 		</ul>
@@ -221,15 +226,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/iOS/" title="iOS">iOS<sup>6</sup></a></li>
+				<li><a href="/tags/iOS/" title="iOS">iOS<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac工具/" title="Mac工具">Mac工具<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/iOS工具/" title="iOS工具">iOS工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Mac工具/" title="Mac工具">Mac工具<sup>1</sup></a></li>
 			
 		
 			
@@ -238,8 +243,6 @@
 		
 			
 				<li><a href="/tags/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
-			
-		
 			
 		
 		</ul>
@@ -279,13 +282,15 @@
 	
 	<section class="info">
 		<p> 热爱移动开发，希望做一些有意思的事情。 <br/>
-			路漫漫其修远兮，吾将上下为求索。</p>
+			路漫漫其修远兮，吾将上下而求索。</p>
 	</section>
 	 
 	<div class="social-font" class="clearfix">
 		
 		<a href="http://weibo.com/2211006995" target="_blank" class="icon-weibo" title="微博"></a>
 		
+		
+		<a href="https://github.com/cuitengtai" target="_blank" class="icon-github" title="github"></a>
 		
 		
 		

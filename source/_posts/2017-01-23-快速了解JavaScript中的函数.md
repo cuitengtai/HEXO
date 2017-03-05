@@ -10,6 +10,7 @@ publish: true
 description: 快速了解JavaScript中的函数
 ---
 最近在学习前端知识，顺手把一些东西记录下来，加深记忆，忘记的时候翻阅一下，温故而知新。
+<!-- more -->
 
 ## 快速了解JavaScript中的函数
 ### 1.普通函数

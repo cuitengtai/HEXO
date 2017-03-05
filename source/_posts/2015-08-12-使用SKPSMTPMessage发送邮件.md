@@ -10,6 +10,7 @@ publish: true
 description: 使用SKPSMTPMessage发送邮件
 ---
 在iOS开发里，可以发送邮件的第三方框架几乎没有，而iOS自带的框架又有诸多的不便，所以今天就来研究一下唯一算是比较好用的`SKPSMTPMessage `。
+<!-- more -->
 
 ## SMTP协议
 先来看一下什么是`SMTP`：
