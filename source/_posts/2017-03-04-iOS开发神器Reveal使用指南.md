@@ -67,6 +67,9 @@ Reveal接入项目有三种方法：
 ::1             localhost 
 ```
 具体的内容可以看一下[这个博客](http://www.cnblogs.com/fengtengfei/p/5100005.html)。上面说的这些可以连接模拟器，至于真机，Reveal4暂时没有发现使用断点连接的办法，Reveal7则可以，需要在项目中增加一段脚本。可以仔细阅读官网的[Load the Reveal Server via an Xcode Breakpoint](http://support.revealapp.com/kb/getting-started/load-the-reveal-server-via-an-xcode-breakpoint)，这篇文章是关于Reveal7的，跟上面所述会有些不同。
+## 其他
+由于之前用Reveal试用版30天，最后导致破解版无法使用，一打开APP就弹出激活框，折腾了好久，用Clean my mac删除也不行，后来无意间我发现在`/Users/Shared/Reveal`这里居然有个`Reveal`文件夹，打开一看，卧槽，这里放的就是激活许可相关的那个文件，心里一万只可爱的小动物飞过😭，小婊砸，二话不说，直接把这个文件干掉，从此又可以愉快的使用破解版啦😝。
+
 ## 最后
 最后，特别想吐槽一下Reveal，虽然好用，但是配置起来很闹心，各种踩坑，如果你遇到什么坑，一定要告诉我哦，祝大家踩坑愉快！
 

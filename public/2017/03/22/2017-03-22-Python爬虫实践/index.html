@@ -1,0 +1,534 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Python爬虫实践 | 光之晨曦</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="tengtai">
+    
+
+    <meta name="keywords" content="Python爬虫实践">
+    <meta name="description" content="Python爬虫实践">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫实践">
+<meta property="og:url" content="http://www.tengtai.tk/2017/03/22/2017-03-22-Python爬虫实践/index.html">
+<meta property="og:site_name" content="光之晨曦">
+<meta property="og:description" content="Python爬虫实践">
+<meta property="og:image" content="http://om6homgqk.bkt.clouddn.com/教程首页.png">
+<meta property="og:image" content="http://om6homgqk.bkt.clouddn.com/网页源码.png">
+<meta property="og:updated_time" content="2017-03-22T15:32:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python爬虫实践">
+<meta name="twitter:description" content="Python爬虫实践">
+<meta name="twitter:image" content="http://om6homgqk.bkt.clouddn.com/教程首页.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="光之晨曦" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="光之晨曦" title="光之晨曦"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="光之晨曦">光之晨曦</a></h1>
+				<h2 class="blog-motto">The code is artwork and needs to be polished slowly.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.tengtai.tk">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/22/2017-03-22-Python爬虫实践/" title="Python爬虫实践" itemprop="url">Python爬虫实践</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="tengtai" target="_blank" itemprop="author">tengtai</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-21T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-03-22</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-number">3.</span> <span class="toc-text">开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>看了<a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="external">廖雪峰老师的Python教程</a>觉得非常的棒，浅显易懂，知识丰富，很适合初学者入门。看了一段时间，决定写点小东西练习一下，于是，就打算使用Python抓取一下廖雪峰老师的Python教程😏。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>打开廖雪峰老师的Python3教程，由于是个人博客，内容也十分简洁，而我们需要抓取的内容也很容易找到。工欲善其事必先利其器，先安装好Python3和PyCharm开发工具，这里就不在赘述了。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>我们先打开这篇教程，就是这个：</p>
+<p><img src="http://om6homgqk.bkt.clouddn.com/教程首页.png" alt="教程首页"></p>
+<p>在抓取前我们先看一下网页的源码，找到我们需要抓取的标签。如图：</p>
+<p><img src="http://om6homgqk.bkt.clouddn.com/网页源码.png" alt="网页源码"></p>
+<p>不难发现，上图的<code>&lt;ul&gt;</code>标签就是我们需要抓取的目标，也就是网页左侧的目录，我们需要的文章链接和标题都在这里。<br>OK！现在万事具备了，大致可以指定以下流程了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1. 获取整个html的内容；</div><div class="line">2. 从html中匹配出我们所需的文章链接及标题；</div><div class="line">3. 下载整个html或者是保存为PDF</div></pre></td></tr></table></figure>
+<p>大致就是这个样子吧，至于步骤三如果下载html的话还需要下载整个页面的css文件，这里先只下载html吧。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>为了完成步骤1，我们先编写一个根据url地址，获取网页内容的函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">def url_open(url):</div><div class="line">    url = re.sub(r&apos;^//*&apos;, &apos;http://&apos;, url)</div><div class="line">    html = urllib.request.urlopen(url)</div><div class="line">    return html.read()</div></pre></td></tr></table></figure>
+<p><code>re</code>是Python内置的处理正则的模块，上面的代码把以<code>//</code>开头的链接替换为<code>http://</code>开头的完整url，并读取整个html的内容。<br>之后我们就可以在整个页面的内容中寻找我们所需要的内容了，这并没有什么难度，关键是如何利用好正则。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"># 获取文章标题和链接</div><div class="line">def find_itemlist(url):</div><div class="line">    html = url_open(url).decode(&apos;utf-8&apos;)</div><div class="line">    soup = BeautifulSoup(html)</div><div class="line">    # 获取&lt;ul&gt;标签内容</div><div class="line">    ul = soup.find_all(&apos;ul&apos;, class_=&apos;uk-nav uk-nav-side&apos;, style=&quot;margin-right:-15px;&quot;)</div><div class="line">    print(ul)</div><div class="line">    if len(ul):</div><div class="line">        ulstr = str(ul[0])</div><div class="line">    # 获取&lt;a&gt;标签内容</div><div class="line">    pattern = r&apos;&lt;a.*&gt;.*&lt;/a&gt;&apos;</div><div class="line">    li = re.findall(pattern, ulstr)</div><div class="line">    items = []</div><div class="line">    for a in li:</div><div class="line">        # 获取href标签内容</div><div class="line">        hrefs = re.findall(r&apos;href=&quot;.*&quot;&apos;, a)</div><div class="line">        if len(hrefs):</div><div class="line">            href = hrefs[0]</div><div class="line">            href = href[6:-1]</div><div class="line">            print(href)</div><div class="line">        # 获取文章标题</div><div class="line">        titles = re.findall(r&apos;&gt;.*&lt;/a&gt;&apos;, a)</div><div class="line">        if len(titles):</div><div class="line">            title = titles[0]</div><div class="line">            title = title[1:-4]</div><div class="line">            print(title)</div><div class="line">        items.append(&#123;&apos;title&apos;:title, &apos;href&apos;:href&#125;)</div><div class="line">    return items</div></pre></td></tr></table></figure>
+<p>原谅我渣渣的正则水平，我先使用Python的BeautifulSoup模块获取了<code>&lt;ul&gt;...&lt;/ul&gt;</code>标签内容，然后又从中获取到了<code>&lt;a&gt;</code>标签内容，最后从<code>&lt;a&gt;</code>标签中获取<code>href</code>标签内容和文章的标题。现在我们有了一个装有文章标题和链接的数组，接下来想干嘛就可以干嘛了😏。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"># 保存html文件</div><div class="line">def save_html(url, file_name):</div><div class="line">    html = url_open(url)</div><div class="line">    # 注意文件名称不能带有斜杠，需要用其他字符串代替。</div><div class="line">    with open(file_name.replace(&apos;/&apos;,&apos;_&apos;) + &apos;.html&apos;, &apos;wb&apos;) as f:</div><div class="line">        try:</div><div class="line">            f.write(html)</div><div class="line">            print(file_name + &apos;保存完成&apos;)</div><div class="line">        except:</div><div class="line">            print(file_name + &apos;写入失败&apos;)</div><div class="line">            </div><div class="line"># 遍历数组，开始写入文件             </div><div class="line">def download(items):</div><div class="line">    # 创建根文件夹</div><div class="line">    root = &apos;XXX&apos;</div><div class="line">    if os.path.exists(root):</div><div class="line">        os.remove(root)</div><div class="line">    os.mkdir(root)</div><div class="line">    os.chdir(root)</div><div class="line">    basurl = &apos;http://www.liaoxuefeng.com&apos;</div><div class="line">    for item in items:</div><div class="line">        url = item[&apos;href&apos;]</div><div class="line">        url = basurl + url</div><div class="line">        file_name = item[&apos;title&apos;]</div><div class="line">        save_html(url, file_name,)</div><div class="line">    os.close()</div><div class="line">    print(&quot;全部文章共%s篇,保存完成!&quot; % len(items))</div></pre></td></tr></table></figure>
+<p>至此，我们的小爬虫就算完成了，虽然很简单，但也是一个好的开始，如果你有兴趣可以吧所有内容转换成PDF保存，我尝试了第三方生成PDF的库<code>pdfkit</code>，转成PDF的效果并不是很好，代码其实很简单，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">def save_pdf(url, file_name):</div><div class="line">    try:</div><div class="line">        pdfkit.from_url(url, file_name.replace(&apos;/&apos;,&apos;_&apos;) + &apos;.pdf&apos;)</div><div class="line">        print(file_name + &apos;保存完成&apos;)</div><div class="line">    except:</div><div class="line">        print(file_name + &apos;写入失败&apos;)</div></pre></td></tr></table></figure>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>其实，这里写入文件的操作用多线程效率会更加的高一些，留着下次尝试吧，本篇结束😝。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Python/">Python</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Python/">Python</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.tengtai.tk/2017/03/22/2017-03-22-Python爬虫实践/" data-title="Python爬虫实践 | 光之晨曦" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/03/04/2017-03-04-iOS开发神器Reveal使用指南/"  title="iOS开发神器Reveal使用指南">
+ <strong>下一篇：</strong><br/> 
+ <span>iOS开发神器Reveal使用指南
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/03/22/2017-03-22-Python爬虫实践/" data-title="Python爬虫实践" data-url="http://www.tengtai.tk/2017/03/22/2017-03-22-Python爬虫实践/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-number">3.</span> <span class="toc-text">开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="cuitengtai" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac工具/" title="Mac工具">Mac工具<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>9</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/iOS/" title="iOS">iOS<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac工具/" title="Mac工具">Mac工具<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/iOS工具/" title="iOS工具">iOS工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Python/" title="Python">Python<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 热爱移动开发，希望做一些有意思的事情。 <br/>
+			路漫漫其修远兮，吾将上下而求索。</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2211006995" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/cuitengtai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="tengtai">tengtai</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tengtai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6b67bf9e170287a3bd896be4ecee8176";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

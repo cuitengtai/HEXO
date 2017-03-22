@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://om6homgqk.bkt.clouddn.com/reveal解决问题指导.png">
 <meta property="og:image" content="http://om6homgqk.bkt.clouddn.com/最后一个错误.png">
 <meta property="og:image" content="http://om6homgqk.bkt.clouddn.com/hosts.png">
-<meta property="og:updated_time" content="2017-03-05T04:21:48.000Z">
+<meta property="og:updated_time" content="2017-03-22T14:11:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发神器Reveal使用指南">
 <meta name="twitter:description" content="iOS开发神器Reveal使用指南">
@@ -55,9 +55,9 @@
 			
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="光之晨曦">光之晨曦</a></h1>
-				<h2 class="blog-motto">代码是艺术品，需要慢慢打磨。</h2>
+				<h2 class="blog-motto">The code is artwork and needs to be polished slowly.</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -73,7 +73,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:www.tengtai.tk">
 					</form>
 					
@@ -96,16 +96,16 @@
 		<a href="/about" title="tengtai" target="_blank" itemprop="author">tengtai</a>
 		
   <p class="article-time">
-    <time datetime="2017-03-03T16:00:00.000Z" itemprop="datePublished"> Published 2017-03-04</time>
+    <time datetime="2017-03-03T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-03-04</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接入自己项目"><span class="toc-number">2.</span> <span class="toc-text">接入自己项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通过断点连接"><span class="toc-number">2.1.</span> <span class="toc-text">通过断点连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接入自己项目"><span class="toc-number">2.</span> <span class="toc-text">接入自己项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通过断点连接"><span class="toc-number">2.1.</span> <span class="toc-text">通过断点连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol>
 		
 		</div>
 		
@@ -133,6 +133,7 @@
 <p><img src="http://om6homgqk.bkt.clouddn.com/hosts.png" alt="更改Hosts"><br>具体配置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">127.0.0.1   localhost</div><div class="line">255.255.255.255 broadcasthost</div><div class="line">::1             localhost</div></pre></td></tr></table></figure>
 <p>具体的内容可以看一下<a href="http://www.cnblogs.com/fengtengfei/p/5100005.html" target="_blank" rel="external">这个博客</a>。上面说的这些可以连接模拟器，至于真机，Reveal4暂时没有发现使用断点连接的办法，Reveal7则可以，需要在项目中增加一段脚本。可以仔细阅读官网的<a href="http://support.revealapp.com/kb/getting-started/load-the-reveal-server-via-an-xcode-breakpoint" target="_blank" rel="external">Load the Reveal Server via an Xcode Breakpoint</a>，这篇文章是关于Reveal7的，跟上面所述会有些不同。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>由于之前用Reveal试用版30天，最后导致破解版无法使用，一打开APP就弹出激活框，折腾了好久，用Clean my mac删除也不行，后来无意间我发现在<code>/Users/Shared/Reveal</code>这里居然有个<code>Reveal</code>文件夹，打开一看，卧槽，这里放的就是激活许可相关的那个文件，心里一万只可爱的小动物飞过😭，小婊砸，二话不说，直接把这个文件干掉，从此又可以愉快的使用破解版啦😝。</p>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>最后，特别想吐槽一下Reveal，虽然好用，但是配置起来很闹心，各种踩坑，如果你遇到什么坑，一定要告诉我哦，祝大家踩坑愉快！</p>
   
 	</div>
@@ -169,6 +170,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2017/03/22/2017-03-22-Python爬虫实践/" title="Python爬虫实践">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Python爬虫实践</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2017/02/28/2017-02-28-iOS中英文混合排序/"  title="iOS中英文混合排序">
@@ -187,22 +196,22 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接入自己项目"><span class="toc-number">2.</span> <span class="toc-text">接入自己项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通过断点连接"><span class="toc-number">2.1.</span> <span class="toc-text">通过断点连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接入自己项目"><span class="toc-number">2.</span> <span class="toc-text">接入自己项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通过断点连接"><span class="toc-number">2.1.</span> <span class="toc-text">通过断点连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="cuitengtai" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -212,7 +221,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 		  
@@ -221,6 +230,10 @@
 		
 		  
 			<li><a href="/categories/Mac工具/" title="Mac工具">Mac工具<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
 		  
 		
 		  
@@ -233,7 +246,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -256,12 +269,16 @@
 				<li><a href="/tags/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
 			
 		
+			
+				<li><a href="/tags/Python/" title="Python">Python<sup>1</sup></a></li>
+			
+		
 		</ul>
 </div>
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
     </ul>
@@ -271,11 +288,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
@@ -516,7 +533,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
